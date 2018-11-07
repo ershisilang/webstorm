@@ -103,7 +103,7 @@ mysqli_query($conn , "set names utf8");
 $sql = 'SELECT subject, runoob_title, 
         runoob_author, submission_date
         FROM runoob_tbl';
-$result=mysql_query("select remind_name,remind_time,transmit_status from test where transmit_status =$subject");
+$result=mysql_query("select remind_name,remind_time,transaction_state from test where transaction_state =$subject");
 $results = array();
 while($row =mysql_fetch_assoc($result)){
 $results[]=$row;
