@@ -1,3 +1,67 @@
+在js的json里面需要定义一个变量来对应recordstate,暂时叫做state
+//connetct to mysql,retrieve the data to json
+ <?php
+ $conn = mysqli_connect('localhost', 'user', 'pwd', 'test');
+if(! $conn )
+{
+    die('连接失败: ' . mysqli_error($conn));
+}
+// 设置编码，防止中文乱码
+mysqli_query($conn , "set names utf8");
+ 
+$sqlselect = "SELECT alertid, sendtime, 
+             recordstate  FROM alertrecord where recordstate=$state";
+mysql_query($sqlinsert);
+$results = array();
+while($row =mysql_fetch_assoc($results)){
+$results[]=$row;
+}
+$realjson=
+echo json_encode($results);
+
+mysql_free_result($results);
+mysql_close($conn);
+
+?>    
+
+
+//利用header方法接收php数据
+<script type="text/javascript">
+    var jsrecord = <?php echo json_encode($results); ?>;
+ //将json数据插入表格
+
+ var per = var jsrecord;  
+ window.onload = function(){ 
+   var tbody = document.getElementById('tbMain'); 
+   for(var i = 0;i < per.length; i++){ //遍历一下json数据 
+     var trow = getDataRow(per[i]); //定义一个方法,返回tr数据 
+     tbody.appendChild(trow); 
+    } 
+   } 
+ function getDataRow(h){ 
+   var row = document.createElement('tr'); //创建行 
+   var alertid = document.createElement('td'); //创建第一列id 
+   idCell.innerHTML = h.id; //填充数据 
+   row.appendChild(idCell); //加入行 ，下面类似 
+   var  sendtime = document.createElement('td');//创建第二列name 
+   nameCell.innerHTML = h.name; 
+   row.appendChild(nameCell); 
+   var recordstate  = document.createElement('td');//创建第三列job 
+   recordstate.innerHTML = h.job; 
+   row.appendChild(jobCell); 
+
+    
+    
+    
+   </script>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -92,26 +156,7 @@ echo $subject; // returns "array"
 ?>
 <form action="welcome.php" method="post">
 
-//mysql
-if(! $conn )
-{
-    die('连接失败: ' . mysqli_error($conn));
-}
-// 设置编码，防止中文乱码
-mysqli_query($conn , "set names utf8");
- 
-$sql = 'SELECT subject, runoob_title, 
-        runoob_author, submission_date
-        FROM runoob_tbl';
-$result=mysql_query("select remind_name,remind_time,transaction_state from test where transaction_state =$subject");
-$results = array();
-while($row =mysql_fetch_assoc($result)){
-$results[]=$row;
-}
-echo json_encode($results);
 
-mysql_free_result($result);
-mysql_close($link);
 
 
 <script type="text/javascript">prototype
