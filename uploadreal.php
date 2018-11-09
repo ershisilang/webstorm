@@ -260,8 +260,15 @@ mysql_close($con);
 <input type="checkbox" name="date" value="friday" /> 星期五
 <input type="checkbox" name="date" value="saturday" /> 星期六
 <input type="checkbox" name="date" value="sunday" /> 星期天
-选择日期: <input type="date" name="user_date" />
-选择时间: <input type="time" name="user_time" />
+<input type="text" name ="time" id="test1">
+ <script src="laydate.js"></script>
+<script>
+laydate.render({
+  elem: '#test1' 
+  ,type: 'datetime'
+});
+</script>
+
 <input type="submit" />
 </form>
 </body>
