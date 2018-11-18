@@ -1,0 +1,77 @@
+//另外使用了jq的一个datatable的方法
+
+<?php
+header("content-type:text/html;charset=utf-8");
+$currentpage = 1;
+if(isset($_GET['page']))
+    $currentpage = $_GET['page'];
+
+//连接数据库
+$link = mysql_connect("localhost","root","") or die('连接失败');
+mysql_select_db('myschool');
+mysql_query('set names utf8');
+
+
+$sql ="SELECT count(*) as 'count' from student";//查询记录的sql语句
+$result = mysql_query($sql);
+$arr = mysql_fetch_array($result);
+$count = $arr['count'];
+$pagesize = 3;
+$pages = ceil($count/$pagesize);//共多少页
+
+
+$prepage = $currentpage -1;
+if($prepage<=0)
+ $prepage=1;
+
+
+$nextpage = $currentpage+1;
+if($nextpage >= $pages){
+$nextpage = $pages;
+}
+
+
+$start =($currentpage-1) * $pagesize;//起始位置
+$sql = "SELECT * from student limit $start,$pagesize";
+echo $sql;
+
+
+// $sql = "select * from student";
+$result = mysql_query($sql);
+?>
+
+//html部分
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<title></title>
+		  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css </script>
+		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js </script>
+		
+</head>
+<body>
+<table border="1">
+<tr>
+<td>学号</td>
+<td>姓名</td>
+<td>性别</td>
+<td>年龄</td>
+</tr>
+<?php while($arr=mysql_fetch_array($result)){ ?>
+<td><?php echo $arr['number']; ?></td>
+<td><?php echo $arr['name']; ?></td>
+<td><?php echo $arr['sex']; ?></td>
+<td><?php echo $arr['age']; ?></td>
+</tr>
+<?php } ?>
+</table>
+<a href="<?php echo $_SERVER['PHP_SELF'].'?page='.$prepage; ?>">上一页</a>&nbsp;&nbsp;<a href="<?php echo $_SERVER['PHP_SELF'].'?page='.$nextpage; ?>">下一页</a>
+</body>
+</html>
+ 
