@@ -1,3 +1,246 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<style type="text/css">
+      
+html,h1,h2,h3,h4,h5,h6,a{
+	font-family: "Microsoft YaHei" ! important;
+}
+.navbar{
+	background:#FFFFFF;
+}
+.nav-link , .navbar-brand{
+	color: #000000;
+	cursor: pointer;
+}
+.nav-link{
+	margin-right: 1em !important;
+}
+.nav-link:hover{
+	
+	color: #0084ff;
+
+}
+.navbar-collapse{
+ justify-content: flex-end;
+}
+.navbar-toggler{
+  background:#fff !important;
+}	
+  
+  .nav{font-size:20px;} 
+.nav-link,.nav{font-size:20px;}   
+.navbar-brand{font-size: 30px !important;} 
+
+.navbar {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+ 
+
+
+.header{
+	 width:100% ;
+    height: 100vh;
+  background-image: url('./img/test.jpg')  ;
+ background-attachment: fixed;
+ background-size: cover;
+ background-position: center;
+}
+
+
+ 
+ 
+}
+.description{
+    position: absolute;
+    top: 30%;
+    margin: auto;
+    padding: 2em;
+
+}
+.description h1{
+	color:#000000 ;
+}
+.description p{
+	color:#666;
+	font-size: 20px;
+	width: 50%;
+	line-height: 1.5;
+}
+.description button{
+	border:1px  solid #0084ff;
+	background:#0084ff;
+	color:#fff;
+}
+	  
+	  
+
+   </style>
+	</head>
+	<body>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!--========== PAGE CONTENT ==========-->
+
+<nav class="navbar navbar-expand-lg fixed-top ">
+	  <a class="navbar-brand" href="#">爱提醒</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-4">
+	      
+	      <li class="nav-item">
+	        <a class="nav-link" data-value="mainpage" href="#">首页</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link " data-value="price" href="#">价格</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link " data-value="about us" href="#">关于我们</a>
+	      </li>
+	    
+	     </ul>
+		  </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登陆</a></li>
+    </ul>
+	    
+	  </div>
+</nav>
+
+
+
+<header class="header ">
+  <div class="overlay"></div>
+   <div class="container">
+   	  <div class="description ">
+  	<h1>
+  		您的私人语音秘书
+  		<p>
+  		忘记女朋友生日不用愁.</p>
+  		<button class="btn btn-outline-secondary btn-lg">马上试用</button>
+  	</h1>
+  </div>
+   </div>
+  
+</header>
+ 
+ 
+  
+ 
+ <div class="container">
+ 
+             <!-- Section header -->
+             <div class="row">
+                 <div class="col-md-6 col-md-offset-3 text-center">
+                     <header>
+                         <h2 class="section-title">使用场景</h2>
+                         <p class="section-subtitle text-muted">日常事务提醒，他人通知提醒，难记易忘的事情统统帮您搞定</p>
+                     </header>
+                 </div>
+             </div><!-- /Section header -->
+ 
+             <!-- Section content -->
+             <div class="row section-content">
+ 
+                 <!-- Left column -->
+                 <div class="col-md-4">
+ 
+                     <!-- About block -->
+                     <div class="about-block mt">
+                         <div class="about-icon media-left text-center">
+                             <i class="fa fa-html5 fa-3x"></i>
+                         </div>
+                         <div class="media-body">
+                             <h3>案例一</h3>
+                             <p class="text-muted text-justify">
+                                 女朋友生日提醒
+                             </p>
+                         </div>
+                     </div><!-- /About block -->
+ 
+                     <!-- About block -->
+                     <div class="about-block mt">
+                         <div class="about-icon media-left text-center">
+                             <i class="fa fa-diamond fa-3x"></i>
+                         </div>
+                         <div class="media-body">
+                             <h3>案例二</h3>
+                             <p class="text-muted text-justify">
+                                 房贷缴费提醒
+                             </p>
+                         </div>
+                     </div><!-- /About block -->
+ 
+                 </div>
+                 <!-- /Left column -->
+ 
+                 <!-- Center column -->
+                 <div class="col-md-4 text-center">
+ 
+                     <!-- Center image -->
+                     <div class="about-image mt">'
+                         <img src="./img/test2.jpg">
+                     </div><!-- /Center image -->
+ 
+                 </div><!-- /Center column -->
+ 
+                 <!-- Right column -->
+                 <div class="col-md-4">
+ 
+                     <!-- About block -->
+                     <div class="about-block mt">
+                         <div class="about-icon media-left text-center">
+                             <i class="fa fa-font fa-3x"></i>
+                         </div>
+                         <div class="media-body">
+                             <h3>案例三</h3>
+                             <p class="text-muted text-justify">
+                                 给父母报平安提醒
+                             </p>
+                         </div>
+                     </div><!-- /About block -->
+ 
+                     <!-- About block -->
+                     <div class="about-block mt">
+                         <div class="about-icon media-left text-center">
+                             <i class="fa fa-flag fa-3x"></i>
+                         </div>
+                         <div class="media-body">
+                             <h3>案例四</h3>
+                             <p class="text-muted text-justify">
+                                 自动给客服发送祝福电话
+                             </p>
+                         </div>
+                     </div><!-- /About block -->
+ 
+                 </div><!-- Right column -->
+ 
+             </div><!-- /Section content -->
+ 
+         </div>
+
+	
+	</body>
+</html>
+
+
+
+
+
 //另外使用了jq的一个datatable的方法
 
 <?php
