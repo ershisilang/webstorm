@@ -1,0 +1,177 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+            background-color: #C7EDCC;
+            font-family: "microsoft yahei";
+            /*min-width: 800px;*/
+        }
+        img{
+            width: 100%;
+            /*height: 462px;*/
+        }
+        .navbar{
+            /*margin-bottom: -10px;*/
+        }
+        #myppt{
+            margin-top: -20px;
+
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a data-toggle="modal" data-target="#register" href=""><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+        <li><a data-toggle="modal" data-target="#login" href=""><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+    </ul>
+    <!-- 注册窗口 -->
+    <div id="register" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-title">
+                    <h1 class="text-center">注册</h1>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" action="">
+                            <div class="form-group">
+                                <label for="reg_tel">手机号</label>
+                                <input class="form-control" type="text" name="reg_tel" placeholder="请输入11位手机号">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg_pas1">密码</label>
+                                <input class="form-control" type="password" name="reg_pas1" placeholder="至少6位字母或数字">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg_pas2">再次输入密码</label>
+                                <input class="form-control" type="password" name="reg_pas2" placeholder="至少6位字母或数字">
+                            </div>
+                            
+                            <div class="text-right">
+                                <button class="btn btn-primary"  name="reg_submit" onclick="register_check()" type="button">提交</button>
+                                <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                            </div>
+                            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？马上登录</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 登录窗口 -->
+    <div id="login" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-title">
+                    <h1 class="text-center">登录</h1>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" action="">
+                            <div class="form-group">
+                                <label for="sign_tel">手机号</label>
+                                <input class="form-control"   name="sign_tel"  type="text" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="sign_pas">密码</label>
+                                <input class="form-control" name="sign_pas"  type="password" placeholder="">
+                            </div>
+                            <div class="text-right">
+                                <button class="btn btn-primary"  onclick="sign_check()" type="submit">登录</button>
+                                <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                            </div>
+                            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">没有账号？注册</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+<script>
+var reg_tel=document.getElementById("reg_tel").value;
+var reg_pas1=document.getElementById("reg_pas1").value;
+var reg_pas2=document.getElementById("reg_pas2").value;
+var sign_tel=document.getElementById("sign_tel").value;
+var sign_pas=document.getElementById("sign_pas").value;
+
+
+
+
+
+   function  register_check(){
+	    if(reg_tel== "" || reg_tel == null || reg_tel == undefined){ 
+			document.getElementsByName("reg_tel")[0].value="";
+            document.getElementsByName("reg_tel")[0].placeholder="请输入手机号码";
+			;
+    }
+	   
+	if(!(/^1(3|4|5|7|8)\d{9}$/.test(reg_tel))){ 
+        document.getElementsByName("reg_tel")[0].value="";
+        document.getElementsByName("reg_tel")[0].placeholder="请输入11位正确格式手机号码";
+    }    
+	   
+	   
+		if(reg_pas1== "" || reg_pas1 == null || reg_pas1 == undefined){ 
+			document.getElementsByName("reg_pas1")[0].value="";
+			document.getElementsByName("reg_pas1")[0].placeholder="请输入密码";
+			;
+	}   
+	 
+	 
+		if(reg_pas2== "" || reg_pas2 == null || reg_pas2 == undefined){ 
+			document.getElementsByName("reg_pas2")[0].value="";
+			document.getElementsByName("reg_pas2")[0].placeholder="请输入密码";
+			;
+	}   
+	  
+		if(reg_pas2==! "" || reg_pas2 == !null || reg_pas2 == !undefined)||reg_pas1== !"" || reg_pas1 == !null || reg_pas1 == !undefined{ 
+				if(reg_pas1== !reg_pas2){ 
+					document.getElementsByName("reg_pas2")[0].value="";
+					document.getElementsByName("reg_pas2")[0].placeholder="密码不一致，请重新输入";
+					;
+			}   
+			
+	}   
+	}
+	
+	
+	
+	function  sign_check(){
+		if(sign_tel== "" || sign_tel == null || sign_tel == undefined){ 
+			document.getElementsByName("sign_tel")[0].value="";
+			document.getElementsByName("sign_tel")[0].placeholder="请输入手机号码";
+			;
+	}
+		
+		if(sign_pas== "" || sign_pas == null || sign_pas == undefined){ 
+			document.getElementsByName("sign_pas")[0].value="";
+			document.getElementsByName("sign_pas")[0].placeholder="请输入密码";
+			;
+	}   
+	
+	
+		
+	}   
+	
+	   
+        
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<style type="text/css">
+      
+html,h1,h2,h3,h4,h5,h6,a{
+	font-family: "Raleway";
+}
+.navbar{
+	background:#F97300;
+}
+.nav-link , .navbar-brand{
+	color: #f4f4f4;
+	cursor: pointer;
+}
+.nav-link{
+	margin-right: 1em !important;
+}
+.nav-link:hover{
+	background: #f4f4f4;
+	color: #f97300;
+
+}
+.navbar-collapse{
+ justify-content: flex-end;
+}
+.navbar-toggler{
+  background:#fff !important;
+}	  
+	  
+	  
+	  
+	  
+	  
+	   .content-sm {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.content-md {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.margin-b-40 {
+    margin-bottom: 40px !important;
+}
+
+@media (max-width: 992px) {
+  .md-margin-b-30 {
+    margin-bottom: 30px !important;
+  }
+}
+
+
+/*--------------------------------------------------
+    [Radius]
+----------------------------------------------------*/
+
+.radius-3 {
+  border-radius: 3px !important;
+}
+
+.radius-10 {
+  border-radius: 10px !important;
+}
+
+
+/*--------------------------------------------------
+    [Colors]
+----------------------------------------------------*/
+
+.bg-color-sky-light {
+  background: #f7f8fa !important;
+}
+
+
+/*--------------------------------------------------
+    [Button]
+----------------------------------------------------*/
+
+
+.btn-dark-brd {
+  position: relative;
+  display: inline-block;
+  line-height: 1.4;
+  color: #34343c;
+  text-align: center;
+  background: transparent;
+  background-image: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #34343c;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn-dark-brd:focus, .btn-dark-brd:active:focus, .btn-dark-brd.active:focus, .btn-dark-brd.focus, .btn-dark-brd:active.focus, .btn-dark-brd.active.focus {
+  outline: none;
+}
+
+.btn-dark-brd:hover {
+  transition-duration: 200ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.btn-dark-brd:hover, .btn-dark-brd:focus, .btn-dark-brd.focus {
+  color: #fff;
+  background: #34343c;
+  border-color: #34343c;
+  text-decoration: none;
+}
+
+.btn-dark-brd:after, .btn-dark-brd:before {
+  background: transparent;
+}
+
+.btn-dark-brd:active, .btn-dark-brd.active {
+  background-image: none;
+  outline: 0;
+}
+
+.btn-dark-brd.disabled, .btn-dark-brd[disabled],
+fieldset[disabled] .btn-dark-brd {
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: .65;
+  pointer-events: none;
+}
+
+.btn-dark-brd .btn-base-element-xs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border-left: 1px solid #2b2b31;
+  padding: 6px 9px;
+}
+
+.btn-dark-brd .btn-base-element-sm {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border-left: 1px solid #2b2b31;
+  padding: 9px 11px;
+}
+
+.btn-dark-brd .btn-base-element-md {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border-left: 1px solid #2b2b31;
+  padding: 12px 13px;
+}
+
+.btn-dark-brd .btn-base-element-lg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border-left: 1px solid #2b2b31;
+  padding: 15px 15px;
+}
+
+.btn-base-sm {
+  font-size: 14px;
+  font-weight: 300;
+  padding: 9px 22px;
+}
+
+
+/*--------------------------------------------------
+    [Pricing List v4]
+----------------------------------------------------*/
+.pricing-list-v4 {
+  text-align: center;
+  background: #fff;
+  box-shadow: 15px 15px 15px 0 #eff1f8;
+}
+
+.pricing-list-v4 .pricing-list-v4-header {
+  border-bottom: 1px solid #e4e8f3;
+  padding: 40px 20px 40px;
+  margin: 10px 30px;
+}
+
+.pricing-list-v4 .pricing-list-v4-header .pricing-list-v4-title {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+.pricing-list-v4 .pricing-list-v4-header .pricing-list-v4-subtitle {
+  display: block;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.pricing-list-v4 .pricing-list-v4-content {
+  padding: 40px 20px;
+}
+
+.pricing-list-v4 .pricing-list-v4-content .pricing-list-v4-price-sign {
+  position: relative;
+  top: -30px;
+  font-size: 20px;
+}
+
+.pricing-list-v4 .pricing-list-v4-content .pricing-list-v4-price {
+  font-size: 70px;
+  font-weight: 400;
+  line-height: .5;
+  letter-spacing: -3px;
+}
+
+.pricing-list-v4 .pricing-list-v4-content .pricing-list-v4-subprice {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.pricing-list-v4 .pricing-list-v4-content .pricing-list-v4-price-info {
+  position: relative;
+  display: block;
+  letter-spacing: 1px;
+}
+
+.pricing-list-v4 .pricing-list-v4-content .pricing-list-v4-price-info:before {
+  font-size: 22px;
+  font-weight: 300;
+  content: "/";
+  margin-right: 3px;
+}
+   </style>
+	</head>
+	<body>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!--========== PAGE CONTENT ==========-->
+
+<nav class="navbar navbar-expand-lg fixed-top ">
+	  <a class="navbar-brand" href="#">Home</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-4">
+	      
+	      <li class="nav-item">
+	        <a class="nav-link" data-value="about" href="#">About</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link " data-value="portfolio" href="#">Portfolio</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link " data-value="blog" href="#">Blog</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link " data-value="team" href="#">
+	        Team</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link " data-value="contact" href="#">Contact</a>
+	      </li>
+	    </ul>
+	    
+	  </div>
+</nav>
+
+ <section id="feature">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="feature-thumb">
+                              <span>01</span>
+                              <h3>Trending Courses</h3>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing eiusmod tempor incididunt ut labore et dolore magna.</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="feature-thumb">
+                              <span>02</span>
+                              <h3>Books & Library</h3>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing eiusmod tempor incididunt ut labore et dolore magna.</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="feature-thumb">
+                              <span>03</span>
+                              <h3>Certified Teachers</h3>
+                              <p>templatemo delivers a wide variety of HTML5 templates for you at absolutely no charge. Please tell your friends.</p>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+<div class="container">
+
+            <!-- Section header -->
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <header>
+                        <h2 class="section-title">A few words about</h2>
+                        <p class="section-subtitle text-muted">There are many variations of passages of Lorem Ipsum.</p>
+                    </header>
+                </div>
+            </div><!-- /Section header -->
+
+            <!-- Section content -->
+            <div class="row section-content">
+
+                <!-- Left column -->
+                <div class="col-md-4">
+
+                    <!-- About block -->
+                    <div class="about-block mt">
+                        <div class="about-icon media-left text-center">
+                            <i class="fa fa-html5 fa-3x"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>HTML5 & CSS3</h3>
+                            <p class="text-muted text-justify">
+                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                                alteration in some form, by injected humour, or randomised words which don't look even slightly
+                                believable.
+                            </p>
+                        </div>
+                    </div><!-- /About block -->
+
+                    <!-- About block -->
+                    <div class="about-block mt">
+                        <div class="about-icon media-left text-center">
+                            <i class="fa fa-diamond fa-3x"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Animation Effects</h3>
+                            <p class="text-muted text-justify">
+                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                                alteration in some form, by injected humour, or randomised words which don't look even slightly
+                                believable.
+                            </p>
+                        </div>
+                    </div><!-- /About block -->
+
+                </div>
+                <!-- /Left column -->
+
+                <!-- Center column -->
+                <div class="col-md-4 text-center">
+
+                    <!-- Center image -->
+                    <div class="about-image mt">
+                        <img src="images/iphone.jpg">
+                    </div><!-- /Center image -->
+
+                </div><!-- /Center column -->
+
+                <!-- Right column -->
+                <div class="col-md-4">
+
+                    <!-- About block -->
+                    <div class="about-block mt">
+                        <div class="about-icon media-left text-center">
+                            <i class="fa fa-font fa-3x"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Google Fonts</h3>
+                            <p class="text-muted text-justify">
+                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                                alteration in some form, by injected humour, or randomised words which don't look even slightly
+                                believable.
+                            </p>
+                        </div>
+                    </div><!-- /About block -->
+
+                    <!-- About block -->
+                    <div class="about-block mt">
+                        <div class="about-icon media-left text-center">
+                            <i class="fa fa-flag fa-3x"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Font Awesome Icons</h3>
+                            <p class="text-muted text-justify">
+                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                                alteration in some form, by injected humour, or randomised words which don't look even slightly
+                                believable.
+                            </p>
+                        </div>
+                    </div><!-- /About block -->
+
+                </div><!-- Right column -->
+
+            </div><!-- /Section content -->
+
+        </div>
+    </section>
+
+<!-- Pricing List v4 -->
+
+
+
+
+<div class="bg-color-sky-light">
+    <div class="content-md container">
+        <div class="row">
+            <div class="col-md-4 md-margin-b-30">
+                <!-- Pricing List v4 -->
+                <div class="pricing-list-v4 radius-10">
+                    <div class="pricing-list-v4-header">
+                        <h4 class="pricing-list-v4-title">Basic</h4>
+                        <span class="pricing-list-v4-subtitle">Individual</span>
+                    </div>
+                    <div class="pricing-list-v4-content">
+                        <div class="margin-b-40">
+                            <span class="pricing-list-v4-price-sign"><i class="fa fa-dollar"></i></span>
+                            <span class="pricing-list-v4-price">7.</span>
+                            <span class="pricing-list-v4-subprice">00</span>
+                            <span class="pricing-list-v4-price-info">Month</span>
+                        </div>
+                        <div class="center-block">
+                            <button type="button" class="btn-dark-brd btn-base-sm radius-3">Purchase</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pricing List v4 -->
+            </div>
+            <div class="col-md-4 md-margin-b-30">
+                <!-- Pricing List v4 -->
+                <div class="pricing-list-v4 radius-10">
+                    <div class="pricing-list-v4-header">
+                        <h4 class="pricing-list-v4-title">Premium</h4>
+                        <span class="pricing-list-v4-subtitle">Business</span>
+                    </div>
+                    <div class="pricing-list-v4-content">
+                        <div class="margin-b-40">
+                            <span class="pricing-list-v4-price-sign"><i class="fa fa-dollar"></i></span>
+                            <span class="pricing-list-v4-price">15.</span>
+                            <span class="pricing-list-v4-subprice">00</span>
+                            <span class="pricing-list-v4-price-info">Month</span>
+                        </div>
+                        <div class="center-block">
+                            <button type="button" class="btn-dark-brd btn-base-sm radius-3">Purchase</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pricing List v4 -->
+            </div>
+            <div class="col-md-4 md-margin-b-30">
+                <!-- Pricing List v4 -->
+                <div class="pricing-list-v4 radius-10">
+                    <div class="pricing-list-v4-header">
+                        <h4 class="pricing-list-v4-title">Ultimate</h4>
+                        <span class="pricing-list-v4-subtitle">Enterprise</span>
+                    </div>
+                    <div class="pricing-list-v4-content">
+                        <div class="margin-b-40">
+                            <span class="pricing-list-v4-price-sign"><i class="fa fa-dollar"></i></span>
+                            <span class="pricing-list-v4-price">23.</span>
+                            <span class="pricing-list-v4-subprice">00</span>
+                            <span class="pricing-list-v4-price-info">Month</span>
+                        </div>
+                        <div class="center-block">
+                            <button type="button" class="btn-dark-brd btn-base-sm radius-3">Purchase</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pricing List v4 -->
+            </div>
+        </div>
+        <!--// end row -->
+    </div>
+</div>
+<!-- End Pricing List v4 -->
+
+
+ <!-- Call to Action -->
+    <section class="content-section bg-primary text-white">
+      <div class="container text-center">
+        <h2 class="mb-4">The buttons below are impossible to resist...</h2>
+        <a href="#" class="btn btn-xl btn-light mr-4">Click Me!</a>
+        <a href="#" class="btn btn-xl btn-dark">Look at Me!</a>
+      </div>
+    </section>
+
+
+<!-- Copyright -->
+<div class="content-sm container text-center">
+    <p>Created by Prothemes. Get to know more about our work at <a href="http://themeforest.net/item/ark-responsive-multipurpose-html5-template/13924383?ref=ProThemes_Net">Themeforest</a></p>
+</div>
+
+
+ 
+
+	</body>
+</html>
