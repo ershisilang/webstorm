@@ -95,4 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "数据插入成功\n";
     mysqli_close($conn);
 
+
+    header("Location:C:\Users\Administrator\PhpstormProjects\webstorm\alertlist.php  ");
 }?>}

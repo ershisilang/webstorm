@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script  src="https://code.jquery.com/jquery-3.3.1.js"            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
 
     <style>
         body{
@@ -34,8 +33,6 @@
     <li><a data-toggle="modal" data-target="#register" href=""><span class="glyphicon glyphicon-user"></span> 注册</a></li>
     <li><a data-toggle="modal" data-target="#login" href=""><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
 </ul>
-
-
 <!-- 注册窗口 -->
 <div id="register" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
@@ -48,25 +45,26 @@
             <div class="modal-title">
                 <h1 class="text-center">注册</h1>
             </div>
-
             <div class="modal-body">
-                <form class="form-group" action="">
+                <form class="form-group" action="reg_sign.php"  method="post"  onsubmit="return register_check()"  >
                     <div class="form-group">
-
                         <label for="reg_tel">手机号</label>
                         <input class="form-control" type="text" id="reg_tel" name="reg_tel" placeholder="请输入11位手机号">
+                        <div id="teltip"></div>
                     </div>
                     <div class="form-group">
                         <label for="reg_pas1">密码</label>
-                        <input class="form-control" type="password"   id="reg_pas1" name="reg_pas1" placeholder="至少6位字母或数字">
+                        <input class="form-control" type="password" id="reg_pas1" name="reg_pas1" placeholder="至少6位字母或数字">
+                        <div id="pastip"></div>
                     </div>
                     <div class="form-group">
                         <label for="reg_pas2">再次输入密码</label>
-                        <input class="form-control" type="password"   id="reg_pas2" name="reg_pas2" placeholder="至少6位字母或数字">
+                        <input class="form-control" type="password" name="reg_pas2"  id="reg_pas2"  placeholder="至少6位字母或数字">
+                        <div id="vpastip"></div>
                     </div>
-                    <div style="color:#F00" id="tip"></div>
+
                     <div class="text-right">
-                        <button class="btn btn-primary"  id="sign_button"  name="sign_button" type="button">提交</button>
+                        <button class="btn btn-primary" type="submit" id="submit" onclick="register_check()">提交</button>
                         <button class="btn btn-danger" data-dismiss="modal">取消</button>
                     </div>
                     <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？马上登录</a>
@@ -75,8 +73,6 @@
         </div>
     </div>
 </div>
-
-
 <!-- 登录窗口 -->
 <div id="login" class="modal fade">
     <div class="modal-dialog">
@@ -110,35 +106,73 @@
     </div>
 </div>
 
-
 <script>
+$("#submit").click(function(){
+var user = new Object();
+user.loginCode = $.trim($("#reg_tel").val());
+user.password = $.trim($("#reg_pas1").val());
+user.vpassword = $.trim($("#reg_pas2").val());
 
-   $('#sign_button').click(function(){
-
-       document.getElementById("tip").innerText == '';
-        var reg_tel = $("#reg_tel").val();
-        var reg_pas1 =$("#reg_pas1").val();
-        var reg_pas2 =$("#reg_pas2").val();
-
-        var regdata = "reg_tel=" + reg_tel + "&reg_pas1=" + reg_pas1 + "&reg_pas2=" + reg_pas2;
-
-        $.ajax({
-            method: "post",
-            url: "reg_sign.php",
-            data: regdata,
-            success: function(data)
-            {
-            $("#tip").html(data);
-            }
-    });
-
-    });
-
+//前台的非空验证
+if(user.loginCode == "" || user.loginCode == null){
+$("#reg_tel").focus;
+$("#teltip").css("color","red");
+$("#formtip").html("请输入手机号码。");
+}else if(user.password == "" || user.password == null){
+$("#reg_pas1").focus;
+$("#passtip").css("color","red");
+$("#passtip").html("对不起，登录密码不能为空。");
+else if(user.vpassword == "" || user.vpassword == null){
+$("#reg_pas2").focus;
+$("#vpastip").css("color","red");
+$("#vpastip").html("对不起，登录密码不能为空。");
+}else{
+$("#formtip").html("");
+//如果账号和密码都不为空，就进行 ajax 异步提交
+$.ajax({
+type:'POST',  //提交方法是POST
+url:'/login.html', //请求的路径
+data:{user:JSON.stringify(user)}, //以JSON字符串形式把 user 传到后台
+dataType:'html', //后台返回的数据类型是html文本
+timeout:1000,  //请求超时时间，毫秒
+error:function(){  //请求失败的回调方法
+$("#formtip").css("color","red");
+$("#formtip").html("登录失败！请重试。");
+},
+success:function(result){   //请求成功的回调方法
+if(result != "" && result == "success"){
+//若登录成功，跳转到"/main.html"
+window.location.href='/main.html';
+}else if(result == "failed"){
+$("#formtip").css("color","red");
+$("#formtip").html("登录失败！请重试。");
+$("#loginCode").val('');
+$("#password").val('');
+}else if(result == "nologincode"){
+$("#formtip").css("color","red");
+$("#formtip").html("登录账号不存在！请重试。");
+}else if(result == "pwderror"){
+$("#formtip").css("color","red");
+$("#formtip").html("登录密码错误！请重试。");
+}else if("nodata" == result){
+$("#formtip").css("color","red");
+$("#formtip").html("对不起，没有任何数据需要处理！请重试。");
+}
+}
+});
+}
+});
 
 </script>
 
 
+
+
+
+
+
+
+
+
 </body>
 </html>
-
-
