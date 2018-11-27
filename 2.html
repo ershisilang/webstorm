@@ -2,9 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div><input id="btnPay" type="button" class="btn btn-primary" value="确认支付"/></div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><b>提示信息:</b></h4>
+            </div>
+            <div class="modal-body" style="color: #2c8011;font:normal 24px">
+                <h3 style="color: red;text-align: center">共计：￥${payInfo.WIDprice+payInfo.logistics_fee}元</h3>
+                <h4><span
+                        class="glyphicon glyphicon-ok"></span>&nbsp;请扫描下方二维码后，输入金额进行付款，点击确定提交！
+                </h4>
+                <div>
+                    <table>
+                        <tr>
+                            <td><img src="${basepath}/resource/images/WeChatPay.jpg" alt="微信扫码支付"
+                                     style="width: 260px;height: 350px;"/></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td><img src="${basepath}/resource/images/AliPay.jpg" alt="支付宝扫码支付"
+                                     style="width: 260px;height: 350px;"/></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="javascript:$('#myModal').modal('hide');">取消
+                </button>
+                <button class="btn btn-primary" data-dismiss="modal" value="确定" onclick="toPay();">
+                    <span class="glyphicon glyphicon-usd"></span>确定
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    //支付
+    function toPay() {
+        $.ajax({
+            dataType: "json",
+            url: "${basepath}/pay/dummyPay",
+            type: "POST",
+            data: {orderId: "${payInfo.WIDout_trade_no}"},
+            success: function (data) {
+                window.location.href = "${basepath}/order/paySuccess.html";
+            },
+            error: function (data) {
+                alert("支付失败");
+            }
+        });
+    }
+    $(function () {
+        $("#btnPay").click(function () {
+            $('#myModal').modal('toggle');
+        });
+    })
+
+</script>
+
 </body>
 </html>
