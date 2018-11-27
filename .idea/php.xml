@@ -3,6 +3,7 @@
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/../../php" />
+      <path value="$USER_HOME$/php" />
     </include_path>
   </component>
 </project>
