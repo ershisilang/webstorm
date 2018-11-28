@@ -70,30 +70,30 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
 <br /><br />
 <div class="container">
     <div class="table-responsitive">
-    <table class="table table-bordered">
-        <table id="employee_data" class="table table-striped table-bordered">
+        <table class="table table-bordered">
+            <table id="employee_data" class="table table-striped table-bordered">
 
-        <thead>
-        <tr>
-            <th>dd</th>
-            <th>ff</th>
+                <thead>
+                <tr>
+                    <th>dd</th>
+                    <th>ff</th>
 
-        </tr>
-        </thead>
-            <?php
+                </tr>
+                </thead>
+                <?php
 
-            while($row = mysqli_fetch_array($result))
-            {
-                echo '
+                while($row = mysqli_fetch_array($result))
+                {
+                    echo '
             <tr>
             <th>'.$row["userid"].'</th>
             <th>'.$row["password"].'</th>            
         </tr>      
              ';
-            }
-            ?>
-        </table>
-        </div>
+                }
+                ?>
+            </table>
+    </div>
 </div>
 
 
@@ -101,36 +101,36 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
 </html>
 
 <script>
-$(document).ready(function()
-{
-    $('#employee_data').DataTable({
-        language: {
-            "show": "显示",
-            "sProcessing": "处理中...",
-            "sLengthMenu": "显示 _MENU_ 项结果",
-            "sZeroRecords": "没有匹配结果",
-            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
-            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-            "sInfoPostFix": "",
-            "sSearch": "搜索:",
-            "sUrl": "",
-            "sEmptyTable": "表中数据为空",
-            "sLoadingRecords": "载入中...",
-            "sInfoThousands": ",",
-            "oPaginate": {
-                "sFirst": "首页",
-                "sPrevious": "上页",
-                "sNext": "下页",
-                "sLast": "末页"
-            },
-            "oAria": {
-                "sSortAscending": ": 以升序排列此列",
-                "sSortDescending": ": 以降序排列此列"
+    $(document).ready(function()
+    {
+        $('#employee_data').DataTable({
+            language: {
+                "show": "显示",
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
             }
-        }
+        });
     });
-});
 
 
 </script>

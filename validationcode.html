@@ -1,0 +1,58 @@
+<script>
+    $("#submit").click(function(){
+        var user = new Object();
+        user.loginCode = $.trim($("#reg_tel").val());
+        user.password = $.trim($("#reg_pas1").val());
+        user.vpassword = $.trim($("#reg_pas2").val());
+
+//前台的非空验证
+        if(user.loginCode == "" || user.loginCode == null){
+            $("#reg_tel").focus;
+            $("#teltip").css("color","red");
+            $("#formtip").html("请输入手机号码。");
+        }else if(user.password == "" || user.password == null){
+            $("#reg_pas1").focus;
+            $("#passtip").css("color","red");
+            $("#passtip").html("对不起，登录密码不能为空。");
+        else if(user.vpassword == "" || user.vpassword == null){
+                $("#reg_pas2").focus;
+                $("#vpastip").css("color","red");
+                $("#vpastip").html("对不起，登录密码不能为空。");
+            }else{
+                $("#formtip").html("");
+//如果账号和密码都不为空，就进行 ajax 异步提交
+                $.ajax({
+                    type:'POST',  //提交方法是POST
+                    url:'/login.html', //请求的路径
+                    data:{user:JSON.stringify(user)}, //以JSON字符串形式把 user 传到后台
+                    dataType:'html', //后台返回的数据类型是html文本
+                    timeout:1000,  //请求超时时间，毫秒
+                    error:function(){  //请求失败的回调方法
+                        $("#formtip").css("color","red");
+                        $("#formtip").html("登录失败！请重试。");
+                    },
+                    success:function(result){   //请求成功的回调方法
+                        if(result != "" && result == "success"){
+//若登录成功，跳转到"/main.html"
+                            window.location.href='/main.html';
+                        }else if(result == "failed"){
+                            $("#formtip").css("color","red");
+                            $("#formtip").html("登录失败！请重试。");
+                            $("#loginCode").val('');
+                            $("#password").val('');
+                        }else if(result == "nologincode"){
+                            $("#formtip").css("color","red");
+                            $("#formtip").html("登录账号不存在！请重试。");
+                        }else if(result == "pwderror"){
+                            $("#formtip").css("color","red");
+                            $("#formtip").html("登录密码错误！请重试。");
+                        }else if("nodata" == result){
+                            $("#formtip").css("color","red");
+                            $("#formtip").html("对不起，没有任何数据需要处理！请重试。");
+                        }
+                    }
+                });
+            }
+        });
+
+</script>
