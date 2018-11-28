@@ -88,7 +88,7 @@
                     Dropdown
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" id="my" href="#">my</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
@@ -119,10 +119,45 @@
 </header>
 
 
+<script>
+
+    $('#my').click(function(){
+
+
+        window.location.href="./upload.html";
+        document.getElementById("tip").innerText == '';
+        var reg_tel = $("#reg_tel").val();
+        var reg_pas1 =$("#reg_pas1").val();
+        var reg_pas2 =$("#reg_pas2").val();
+
+        var regdata = "reg_tel=" + reg_tel + "&reg_pas1=" + reg_pas1 + "&reg_pas2=" + reg_pas2;
+
+        $.ajax({
+            method: "post",
+            url: "reg_sign.php",
+            data: regdata,
+            success: function(data)
+            {
+                if(data='注册成功，请登录')
+                {
+
+                    $('#register').modal('hide');
+                    $('#login').modal('show');
+                    $("#logintip").html('注册成功，请登录');
+
+                }
+                else{
+                    $("#tip").html(data);
+                }
+
+            }
+        });
+
+    });
 
 
 
-
+</script>
 
 <!-- section_introduction-->
 
