@@ -5,9 +5,11 @@ $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 
+
+
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
-$result = mysqli_query($conn,"SELECT alertid, filepath FROM alert");
+$result = mysqli_query($conn,"SELECT userid, password FROM user");
 
 ?>
 
@@ -27,6 +29,44 @@ $result = mysqli_query($conn,"SELECT alertid, filepath FROM alert");
 
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+
 <br /><br />
 <div class="container">
     <div class="table-responsitive">
@@ -35,8 +75,8 @@ $result = mysqli_query($conn,"SELECT alertid, filepath FROM alert");
 
         <thead>
         <tr>
-            <th>1</th>
-            <th>2</th>
+            <th>dd</th>
+            <th>ff</th>
 
         </tr>
         </thead>
@@ -46,8 +86,8 @@ $result = mysqli_query($conn,"SELECT alertid, filepath FROM alert");
             {
                 echo '
             <tr>
-            <th>'.$row["alertid"].'</th>
-            <th>'.$row["filepath"].'</th>            
+            <th>'.$row["userid"].'</th>
+            <th>'.$row["password"].'</th>            
         </tr>      
              ';
             }
