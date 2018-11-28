@@ -5,96 +5,25 @@
     <title>f</title>
 
 
-
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script  src="https://code.jquery.com/jquery-3.3.1.js"            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
     <style type="text/css">
-
-        html,h1,h2,h3,h4,h5,h6,a{
-            font-family: "Microsoft YaHei" ! important;
-        }
-        .navbar{
-            background:#FFFFFF;
-        }
-        .nav-link , .navbar-brand{
-            color: #000000;
-            cursor: pointer;
-        }
-        .nav-link{
-            margin-right: 1em !important;
-        }
-        .nav-link:hover{
-
-            color: #0084ff;
-
-        }
-        .navbar-collapse{
-            justify-content: flex-end;
-        }
-        .navbar-toggler{
-            background:#fff !important;
-        }
-
-        .nav{font-size:20px;}
-        .nav-link,.nav{font-size:20px;}
-        .navbar-brand{font-size: 30px !important;}
-
-        .navbar {
-            margin-left: 40px;
-            margin-right: 40px;
-        }
-
-
+        .nav{font-size:20px;
+            color: #0084ff;}
 
         .header{
             width:100% ;
-            height: 100vh;
+            height: 80vh;
             background-image: url('./img/test.jpg')  ;
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
         }
-
-
-
-
-
-        .description{
-            position: absolute;
-            top: 50%;
-            margin: auto;
-            padding: 2em;
-
-        }
-        .description h1{
-            color:#000000 ;
-        }
-        .description p{
-            color:#666;
-            font-size: 20px;
-            width: 50%;
-            line-height: 1.5;
-        }
-        .description button{
-            border:1px  solid #0084ff;
-            background:#0084ff;
-            color:#fff;
-        }
-
-        /*---------------------------------------
-             FEATURE
-         -----------------------------------------*/
 
         .feature-thumb {
             border: 1px solid #f0f0f0;
@@ -129,167 +58,49 @@
 
 
 
-<!--========== PAGE CONTENT ==========-->
-<nav class="navbar navbar-expand-lg fixed-top ">
-    <a class="navbar-brand" href="#">fdf</a>
-
-
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav mr-4">
-
-            <li class="nav-item">
-                <a class="nav-link" data-value="mainpage" href="#">fdf</a>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " data-value="price" href="#">fd</a>
+                <a class="nav-link" href="#">Features</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " data-value="about us" href="#">fdfd</a>
+                <a class="nav-link" href="#">Pricing</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
         </ul>
-
-
     </div>
-    <ul class="nav navbar-nav navbar-right">
-        <li><a data-toggle="modal" data-target="#register" href=""><span class="glyphicon glyphicon-user"></span> fdf</a></li>
-        <li><a data-toggle="modal" data-target="#login" href=""><span class="glyphicon glyphicon-log-in"></span> fdfd</a></li>
-    </ul>
-
 </nav>
 
+    <!-- header -->
 
-<!-- 注册窗口 -->
-<div id="register" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-title">
-                <h1 class="text-center">fd</h1>
-            </div>
-
-            <div class="modal-body">
-                <form class="form-group" action="">
-                    <div class="form-group">
-
-                        <label for="reg_tel">手机号</label>
-                        <input class="form-control" type="text" id="reg_tel" name="reg_tel" placeholder="请输入11位手机号">
-                    </div>
-                    <div class="form-group">
-                        <label for="reg_pas1">密码</label>
-                        <input class="form-control" type="password"   id="reg_pas1" name="reg_pas1" placeholder="至少6位字母或数字">
-                    </div>
-                    <div class="form-group">
-                        <label for="reg_pas2">再次输入密码</label>
-                        <input class="form-control" type="password"   id="reg_pas2" name="reg_pas2" placeholder="至少6位字母或数字">
-                    </div>
-                    <div style="color:#F00" id="tip"></div>
-                    <div class="text-right">
-                        <button class="btn btn-primary"  id="sign_button"  name="sign_button" type="button">提交</button>
-                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                    </div>
-                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？马上登录</a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- 登录窗口 -->
-<div id="login" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-title">
-                <h1 class="text-center">登录</h1>
-            </div>
-            <div class="modal-body">
-                <form class="form-group" action="">
-                    <div class="form-group">
-                        <label for="">手机号</label>
-                        <input class="form-control" type="text" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="">密码</label>
-                        <input class="form-control" type="password" placeholder="">
-                    </div>
-                    <div class="text-right">
-                        <button class="btn btn-primary" type="submit">登录</button>
-                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                    </div>
-                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">没有账号？注册</a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-    $("#tip").html('ffdf');
-    $('#sign_button').click(function(){
-
-        document.getElementById("tip").innerText == '';
-        var reg_tel = $("#reg_tel").val();
-        var reg_pas1 =$("#reg_pas1").val();
-        var reg_pas2 =$("#reg_pas2").val();
-
-        var regdata = "reg_tel=" + reg_tel + "&reg_pas1=" + reg_pas1 + "&reg_pas2=" + reg_pas2;
-
-        $.ajax({
-            method: "post",
-            url: "reg_sign.php",
-            data: regdata,
-            success: function(data)
-            {
-
-                if(data=="注册成功，请登录")
-                {
-                    $("#register").modal('hide');
-                    $("#login").modal('show');
-                }        else
-                {
-                    $("#tip").html(data);
-                    $("#register").modal('hide');
-                    $("#login").modal('show');
-                }
-           }
-        });
-
-    });
-
-
-</script>
-
-
-<!--
 <header class="header ">
     <div class="overlay"></div>
     <div class="container">
         <div class="description ">
             <h1>
-                fdfd
+                您的私人语音秘书
                 <p>
-                    fdf.</p>
-                <button class="btn btn-outline-secondary btn-lg">fdf</button>
+                    忘记女朋友生日不用愁.</p>
+                <button class="btn btn-outline-secondary btn-lg">马上试用</button>
             </h1>
         </div>
     </div>
--->
-
-
-
 
 </header>
+
+<!-- section_introduction-->
 
 <section id="feature">
     <div class="container   ">
@@ -298,40 +109,30 @@
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>01</span>
-                    <h3>fd</h3>
-                    <p>fdf</p>
+                    <h3>通知自己</h3>
+                    <p>信用卡缴费，女朋友生日，老板的任务都可以通过电话电话通知</p>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>02</span>
-                    <h3>fdf</h3>
-                    <p>fd</p>
+                    <h3>通知别人</h3>
+                    <p>给亲戚或者朋友发送提醒，如生日祝福，平安达到通知等</p>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>03</span>
-                    <h3>fdf</h3>
-                    <p>fd</p>
+                    <h3>语音广播</h3>
+                    <p>学校给家长发送通知；销售给自己的客户发送生日祝贺；均可批量搞定</p>
                 </div>
             </div>
 
         </div>
     </div>
 </section>
-
-
-<!-- Footer Links -->
-
-<!-- 备案 -->
-<div class="record text-center py-3">fdfd
-
-</div>
-<!-- Copyright -->
-
 
 <!-- Footer -->
 
