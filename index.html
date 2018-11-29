@@ -174,7 +174,7 @@
                     </div>
                     <div style="color:#F00" id="logintip"></div>
                     <div class="text-right">
-                        <button class="btn btn-primary"  id="login_button"  name="login_button" type="submit">登录</button>
+                        <button class="btn btn-primary"  id="login_button"  name="login_button" type="button">登录</button>
                         <button class="btn btn-danger" data-dismiss="modal">取消</button>
                     </div>
                     <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">没有账号？注册</a>
@@ -208,6 +208,7 @@
                     $('#register').modal('hide');
                     $('#login').modal('show');
                     $("#logintip").html('注册成功，请登录');
+
                 }
                 else{
                     $("#tip").html(data);
@@ -222,33 +223,30 @@
     $('#login_button').click(function(){
 
         document.getElementById("logintip").innerText == '';
-        var login_tel = $("login_tel").val();
+        var login_tel = $("#login_tel").val();
         var login_pas =$("#login_pas").val();
 
 
         var regdata = "login_tel=" + login_tel + "&login_pas=" + login_pas;
 
-        $.ajax({
-            method: "post",
-            url: "reg_sign.php",
-            data: regdata,
-            success: function(data)
-            {
-                if(data='注册成功，请登录')
-                {
 
-                    $('#register').modal('hide');
-                    $('#login').modal('show');
-                    $("#logintip").html('注册成功，请登录');
-                }
-                else{
-                    $("#tip").html(data);
-                }
 
+
+    $.ajax({
+        method: "post",
+        url: "login.php",
+        data: regdata,
+        success: function(data)
+        {
+
+                $("#logintip").html(data);
             }
-        });
+
 
     });
+
+    });
+
 
 
 </script>
