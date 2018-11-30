@@ -1,7 +1,7 @@
-{
-  "name": "$name$",
-  "version": "$version$",
-  "dependencies": {
-    $END$
+[
+  {
+    "id": "111",
+    "state" : "notready"
   }
-}
+
+]
