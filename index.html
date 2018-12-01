@@ -15,13 +15,29 @@
 
 
     <style type="text/css">
+
+
+
+
+#reg{font-weight:bold;
+    color: #000000;
+
+}
+
+.navbar-brand{font-weight:bold;
+    font-size:30px;
+    color: #0084ff;
+
+}
+
         .nav{font-size:
                 20px;
-            color: #0084ff;}
+
+            }
 
         .nav-link{font-size:
                 20px;
-            color: #0084ff;}
+             }
 
 
 
@@ -34,7 +50,45 @@
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
+
         }
+
+        .description{
+            position: absolute;
+            top:25%;
+            margin: auto;
+            padding: 1em;
+
+            text-align: left;
+
+        }
+        .description h1{
+            color:#fff ;
+            font-size: 50px;
+        }
+        .description p{
+            color:#fff;
+            font-size: 25px;
+
+            line-height: 1.5;
+            padding-bottom:1em;
+        }
+        .description button{
+            border:1px  solid #0084ff;
+            background:#0084ff;
+            color:#fff;
+        }
+
+
+
+
+.display-4 {
+    font-size:45px;
+
+}
+
+
+
 
         .feature-thumb {
             border: 1px solid #f0f0f0;
@@ -73,7 +127,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">爱提醒</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -81,22 +135,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#"  onclick="javascript:window.location.href='index.html'">首页<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#"  onclick="javascript:window.location.href='price1.html'">产品价格</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#"   onclick="javascript:window.location.href='aboutus.html'">关于我们</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-                <a data-toggle="modal" data-target="#register" href=""  class="nav-link"><span class="glyphicon glyphicon-user"></span> register</a>
+
+                <a data-toggle="modal" data-target="#register" href=""  class="nav-link"id="reg"><span class="glyphicon glyphicon-user"></span> 注册</a>
             </li>
             <li class="nav-item">
-                <a data-toggle="modal" data-target="#login" href=""  class="nav-link"><span class="glyphicon glyphicon-user"></span> login</a>
+                <a data-toggle="modal" data-target="#login" href=""  class="nav-link"><span class="glyphicon glyphicon-user"></span> 登陆</a>
             </li>
         </ul>
 
@@ -252,15 +307,15 @@
 </script>
 
 <header class="header ">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="description ">
+
+    <div class="pull-left">
+        <div class="description"  >
             <h1>
-                sdfsdf
-                <p>
-                    fdfd.</p>
-                <button class="btn btn-outline-secondary btn-lg">sdsd</button>
-            </h1>
+                爱提醒，你的私人语音秘书</h1>
+                <p>工作提醒，亲人生日提醒，客户关怀提醒。只需简单设置，统统帮您搞定
+                    </p>
+                <button class="btn btn-outline-secondary btn-lg">马上试用</button>
+
         </div>
     </div>
 
@@ -278,8 +333,8 @@
     <div class="container   ">
 
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 class="display-4">fdfdf</h1>
-            <p class="lead">fdfasfsafasdfsadfasdfsdffafasfsdfsdfafsdafasdfsadfasf or your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+            <h1 class="display-4">使用场景</h1>
+            <p class="lead">购买会员后，在后台输入需要发送提醒的手机号码，并上传您想发送语音文件，选择发送时间。到达设置的发送时间，系统会自动通过电话呼入的方式呼叫设置的手机号码进行提醒</p>
         </div>
 
 
@@ -287,24 +342,24 @@
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>01</span>
-                    <h3>fdd</h3>
-                    <p>fd</p>
+                    <h3>提醒内容多样</h3>
+                    <p>可以设置工作提醒，亲友生日提醒，客户关怀提醒等各种内容的提醒</p>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>02</span>
-                    <h3>fd</h3>
-                    <p>fdf</p>
+                    <h3>提醒对象灵活</h3>
+                    <p>可以给自己发送提醒，也支持给亲友或同事或客户等多种对象发送提醒或通知</p>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>03</span>
-                    <h3>fdf</h3>
-                    <p>fdfd</p>
+                    <h3>提醒成功率高</h3>
+                    <p>通过电话呼入的方式进行语音提醒或通知，相比笔记本，手机等传统方式唤醒率更高</p>
                 </div>
             </div>
 
@@ -314,7 +369,10 @@
 
 <!-- Footer -->
 
+<div class="record text-center py-3">蜀ICP备18034123号 |  成都寻光者电子商务有限公司
 
+
+</div>
 </body>
 </html>
 

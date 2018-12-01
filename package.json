@@ -1,7 +1,5 @@
 {
-  "name": "$name$",
-  "version": "$version$",
-  "dependencies": {
-    $END$
-  }
+
+    "name":"1","sex":"11"
+
 }
