@@ -1,5 +1,20 @@
 <?php
 
+
+if (!isset($_SESSION['name'])) {
+
+    header("Location:price1.html");
+    exit;
+} else {
+
+
+    header("Location:index_alreadylogin.html");
+    exit;
+    die("您无权访问");
+
+}
+
+
 $dbhost = 'localhost:3306'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
@@ -10,8 +25,8 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
 $result = mysqli_query($conn,"SELECT userid, password FROM user");
-
 ?>
+
 
 
 <!DOCTYPE html>
@@ -103,6 +118,12 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
 <script>
 $(document).ready(function()
 {
+
+
+    alert("出来了");
+
+
+
     $('#employee_data').DataTable({
         language: {
             "show": "显示",
@@ -130,7 +151,7 @@ $(document).ready(function()
             }
         }
     });
-});
-
 
 </script>
+
+

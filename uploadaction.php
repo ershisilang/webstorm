@@ -95,6 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "数据插入成功\n";
     mysqli_close($conn);
 
-
+//插入成功，向接口发送ajax请求，回调函数再次插入数据库改变状态
     header("Location:C:\Users\Administrator\PhpstormProjects\webstorm\alertlist.php  ");
 }?>}

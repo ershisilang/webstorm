@@ -124,30 +124,22 @@
     $('#my').click(function(){
 
 
-        window.location.href="./upload.html";
-        document.getElementById("tip").innerText == '';
-        var reg_tel = $("#reg_tel").val();
-        var reg_pas1 =$("#reg_pas1").val();
-        var reg_pas2 =$("#reg_pas2").val();
 
-        var regdata = "reg_tel=" + reg_tel + "&reg_pas1=" + reg_pas1 + "&reg_pas2=" + reg_pas2;
 
         $.ajax({
             method: "post",
-            url: "reg_sign.php",
-            data: regdata,
+            url: "sessionvalidation.php",
+            data: {},
             success: function(data)
             {
-                if(data='注册成功，请登录')
+                if(data='您已成功登陆')
                 {
 
-                    $('#register').modal('hide');
-                    $('#login').modal('show');
-                    $("#logintip").html('注册成功，请登录');
+                    window.location.href="./upload.html";
 
                 }
                 else{
-                    $("#tip").html(data);
+                    window.location.href="./index.html";
                 }
 
             }

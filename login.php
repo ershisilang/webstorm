@@ -20,8 +20,16 @@ if ($username && $password){//如果用户名和密码都不为空
     $result=mysqli_query($conn,$sql);
     $rows = mysqli_num_rows($result);
     if($rows){//0 false 1 true
+
+        //开启一个会话
+        session_start();
+        $_SESSION['name'] = $username;
+
+
+
+
         echo "<script language='javascript' type='text/javascript'>";
-        echo "window.location.href='./index_alreadylogin.html'";
+        echo "window.location.href='./index_alreadylogin.php'";
         echo "</script>";
 
     }else{
