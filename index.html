@@ -2,7 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>f</title>
+    <title>爱通知 电话通知 语音提醒 </title>
+
+    <meta name="keywords" content=" 电话提醒，语音提醒，电话通知，语音通知">
+    <meta name="description" content="爱通知通过电话通知的方法，提高电话提醒的效率，帮助个人通过电话提醒更好的管理生活，帮助企业通过电话通知提高信息发布效率">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?24878ba02373ef0bb0a828acf30bb257";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -16,28 +29,25 @@
 
     <style type="text/css">
 
+       #reg{font-weight:bold;
+            color: #000000;
 
+        }
 
+        .navbar-brand{font-weight:bold;
+            font-size:30px;
+            color: #0084ff;
 
-#reg{font-weight:bold;
-    color: #000000;
-
-}
-
-.navbar-brand{font-weight:bold;
-    font-size:30px;
-    color: #0084ff;
-
-}
+        }
 
         .nav{font-size:
                 20px;
 
-            }
+        }
 
         .nav-link{font-size:
                 20px;
-             }
+        }
 
 
 
@@ -46,7 +56,7 @@
         .header{
             width:100% ;
             height: 80vh;
-            background-image: url('./img/test.jpg')  ;
+            background-image: url('./img/index.jpeg')  ;
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
@@ -55,9 +65,9 @@
 
         .description{
             position: absolute;
-            top:25%;
+            top:32%;
             margin: auto;
-            padding: 1em;
+            padding-left:8em;
 
             text-align: left;
 
@@ -71,7 +81,7 @@
             font-size: 25px;
 
             line-height: 1.5;
-            padding-bottom:1em;
+            padding-bottom:2em;
         }
         .description button{
             border:1px  solid #0084ff;
@@ -82,10 +92,10 @@
 
 
 
-.display-4 {
-    font-size:45px;
+        .display-4 {
+            font-size:45px;
 
-}
+        }
 
 
 
@@ -127,7 +137,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">爱提醒</a>
+    <a class="navbar-brand" href="#">爱通知</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -287,18 +297,18 @@
 
 
 
-    $.ajax({
-        method: "post",
-        url: "login.php",
-        data: regdata,
-        success: function(data)
-        {
+        $.ajax({
+            method: "post",
+            url: "login.php",
+            data: regdata,
+            success: function(data)
+            {
 
                 $("#logintip").html(data);
             }
 
 
-    });
+        });
 
     });
 
@@ -311,10 +321,10 @@
     <div class="pull-left">
         <div class="description"  >
             <h1>
-                爱提醒，你的私人语音秘书</h1>
-                <p>工作提醒，亲人生日提醒，客户关怀提醒。只需简单设置，统统帮您搞定
-                    </p>
-                <button class="btn btn-outline-secondary btn-lg">马上试用</button>
+                爱通知，您的私人语音秘书</h1>
+            <p>工作通知，亲人生日提醒，客户关怀提醒。只需简单设置，统统帮您搞定
+            </p>
+            <button class="btn btn-outline-secondary btn-lg">马上试用</button>
 
         </div>
     </div>
@@ -334,7 +344,7 @@
 
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 class="display-4">使用场景</h1>
-            <p class="lead">购买会员后，在后台输入需要发送提醒的手机号码，并上传您想发送语音文件，选择发送时间。到达设置的发送时间，系统会自动通过电话呼入的方式呼叫设置的手机号码进行提醒</p>
+            <p class="lead">购买会员后，在后台输入需要发送通知的手机号码，并上传您想发送语音文件，选择发送时间。系统到达设置的发送时间，会自动通过电话呼入的方式呼叫设置的手机号码进行通知</p>
         </div>
 
 
@@ -342,23 +352,23 @@
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>01</span>
-                    <h3>提醒内容多样</h3>
-                    <p>可以设置工作提醒，亲友生日提醒，客户关怀提醒等各种内容的提醒</p>
+                    <h3>通知内容多样</h3>
+                    <p>可以设置工作通知，亲友生日提醒，客户关怀提醒等各种内容的通知</p>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>02</span>
-                    <h3>提醒对象灵活</h3>
-                    <p>可以给自己发送提醒，也支持给亲友或同事或客户等多种对象发送提醒或通知</p>
+                    <h3>通知对象灵活</h3>
+                    <p>可以给自己发送，也支持给亲友或同事或客户等多种对象发送提醒或通知</p>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-4">
                 <div class="feature-thumb">
                     <span>03</span>
-                    <h3>提醒成功率高</h3>
+                    <h3>通知成功率高</h3>
                     <p>通过电话呼入的方式进行语音提醒或通知，相比笔记本，手机等传统方式唤醒率更高</p>
                 </div>
             </div>
@@ -375,4 +385,3 @@
 </div>
 </body>
 </html>
-
