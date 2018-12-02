@@ -229,7 +229,7 @@ if (!isset($_SESSION['name'])) {
 
 
         }
-        else  (numcheck=='0')
+        else if (numcheck=='0')
         {
             $("#check").html('您当月的次数已用尽（60次），请立即续费');
 
