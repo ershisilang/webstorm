@@ -2,10 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>爱通知 电话通知 语音提醒 </title>
+    <title>dfd </title>
 
-    <meta name="keywords" content=" 电话提醒，语音提醒，电话通知，语音通知">
-    <meta name="description" content="爱通知通过电话通知的方法，提高电话提醒的效率，帮助个人通过电话提醒更好的管理生活，帮助企业通过电话通知提高信息发布效率">
+
     <script>
         var _hmt = _hmt || [];
         (function() {
@@ -29,7 +28,7 @@
 
     <style type="text/css">
 
-       #reg{font-weight:bold;
+        #reg{font-weight:bold;
             color: #000000;
 
         }
@@ -53,15 +52,6 @@
 
 
 
-        .header{
-            width:100% ;
-            height: 80vh;
-            background-image: url('./img/index.jpeg')  ;
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-
-        }
 
         .description{
             position: absolute;
@@ -137,7 +127,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">爱通知</a>
+    <a class="navbar-brand" href="#">的</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -148,11 +138,11 @@
                 <a class="nav-link" href="#"  onclick="javascript:window.location.href='index.html'">首页<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"  onclick="javascript:window.location.href='price1.html'">产品价格</a>
+                <a class="nav-link" href="#"  onclick="javascript:window.location.href='price1.html'">dfd</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#"   onclick="javascript:window.location.href='aboutus.html'">关于我们</a>
+                <a class="nav-link" href="#"   onclick="javascript:window.location.href='aboutus.html'">dfd</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -258,26 +248,59 @@
         var reg_tel = $("#reg_tel").val();
         var reg_pas1 =$("#reg_pas1").val();
         var reg_pas2 =$("#reg_pas2").val();
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验用户名
+
+        var reg=/^[0-9]{6,16}$|^[a-zA-Z]{6,16}$/;//校验密码
         var regdata = "reg_tel=" + reg_tel + "&reg_pas1=" + reg_pas1 + "&reg_pas2=" + reg_pas2;
 
         if(reg_tel == "" ||reg_tel == null){
             $("#reg_tel").focus;
-            $("#logintip").html("请输入手机号码。")
+            $("#tip").html("请输入手机号码")
 
-        }else if(reg_pas1 == "" || reg_pas1 == null){
+                }
+
+
+
+        else if(!myreg.test(reg_tel)){
+            $("#reg_tel").focus;
+            $("#tip").html("请输入正确格式的手机号")
+        }
+
+
+
+        else if(reg_pas1 == "" ||reg_pas1 == null){
             $("#reg_pas1").focus;
-            $("#logintip").html("请输入密码。")
+            $("#tip").html("请输入密码")
+        }
 
-        else if(reg_pas2 == "" || reg_pas2 == null){
-                $("#reg_pas1").focus;
-                $("#logintip").html("请确认密码。")
+        else if(!reg.test(reg_pas1)){
+            $("#reg_pas1").focus;
+            $("#tip").html("请输入6-16个英文字母或数字的密码")
+        }
+
+
+
+        else if(reg_pas2 == "" ||reg_pas2 == null){
+                $("#reg_pas2").focus;
+                $("#tip").html("请输入密码")
+            }
+
+
+
+
+        else if(!reg.test(reg_pas2)){
+            $("#reg_pas2").focus;
+            $("#tip").html("请输入6-16个英文字母或数字的密码")
+        }
+
 
             else if(reg_pas1!==reg_pas2){
                     $("#reg_pas1").focus;
 
-                    $("#logintip").html("密码不一致。");
+                    $("#tip").html("两次输入密码不一致");
 
-            }else{
+                }
+                else{
 
                     $.ajax({
                         method: "post",
@@ -300,10 +323,9 @@
                         }
                     });
 
+                }
 
-
-            }
-
+    });
 
 
 
@@ -313,46 +335,64 @@
         document.getElementById("logintip").innerText == '';
         var login_tel = $("#login_tel").val();
         var login_pas =$("#login_pas").val();
-
-
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验用户名
+        var reg=/^[0-9]{6,16}$|^[a-zA-Z]{6,16}$/;//校验密码
         var logindata = "login_tel=" + login_tel + "&login_pas=" + login_pas;
 
+        if(login_tel == "" ||login_tel == null){
+            $("#login_tel").focus;
+            $("#logintip").html("请输入手机号码")
 
+        }
 
+        else if(!myreg.test(login_tel)){
+            $("#reg_tel").focus;
+            $("#logintip").html("请输入正确格式的手机号")
+        }
 
-        $.ajax({
-            method: "post",
-            url: "login.php",
-            data: logindata,
-            success: function(data)
-            {
+        else if(login_pas == "" ||login_pas == null){
+            $("#login_pas").focus;
+            $("#logintip").html("请输入密码")
+        }
 
-                $("#logintip").html(data);
-            }
+        else if(!reg.test(login_pas)){
+            $("#login_pas").focus;
+            $("#logintip").html("请输入6-16个英文字母或数字的密码")
+        }
 
+        else{
 
-        });
+            $.ajax({
+                method: "post",
+                url: "reg_sign.php",
+                data: logindata,
+                success: function(data)
+                {
+                    if(data='注册成功，请登录')
+                    {
+
+                        $('#register').modal('hide');
+                        $('#login').modal('show');
+                        $("#logintip").html('注册成功，请登录');
+
+                    }
+                    else{
+                        $("#logintip").html(data);
+                    }
+
+                }
+            });
+
+        }
 
     });
 
 
 
+
 </script>
 
-<header class="header ">
 
-    <div class="pull-left">
-        <div class="description"  >
-            <h1>
-                爱通知，您的私人语音秘书</h1>
-            <p>工作通知，亲人生日提醒，客户关怀提醒。只需简单设置，统统帮您搞定
-            </p>
-            <button class="btn btn-outline-secondary btn-lg">马上试用</button>
-
-        </div>
-    </div>
-
-</header>
 
 
 
@@ -362,47 +402,9 @@
 
 <!-- section_introduction-->
 
-<section id="feature">
-    <div class="container   ">
-
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 class="display-4">使用场景</h1>
-            <p class="lead">购买会员后，在后台输入需要发送通知的手机号码，并上传您想发送语音文件，选择发送时间。系统到达设置的发送时间，会自动通过电话呼入的方式呼叫设置的手机号码进行通知</p>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-4 col-sm-4">
-                <div class="feature-thumb">
-                    <span>01</span>
-                    <h3>通知内容多样</h3>
-                    <p>可以设置工作通知，亲友生日提醒，客户关怀提醒等各种内容的通知</p>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="feature-thumb">
-                    <span>02</span>
-                    <h3>通知对象灵活</h3>
-                    <p>可以给自己发送，也支持给亲友或同事或客户等多种对象发送提醒或通知</p>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="feature-thumb">
-                    <span>03</span>
-                    <h3>通知成功率高</h3>
-                    <p>通过电话呼入的方式进行语音提醒或通知，相比笔记本，手机等传统方式唤醒率更高</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
 
 <!-- Footer -->
 
-<div class="record text-center py-3">蜀ICP备18034123号 |  成都寻光者电子商务有限公司
 
 
 </div>
