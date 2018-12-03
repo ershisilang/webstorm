@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3b349326-3c08-46a0-b5cd-0872972fdbbc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sessionvalidation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alertjsontest.php" beforeDir="false" afterPath="$PROJECT_DIR$/alertjsontest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alertlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/alertlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index_alreadylogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/index_alreadylogin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/price1.html" beforeDir="false" afterPath="$PROJECT_DIR$/price1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploadaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/uploadaction.php" afterDir="false" />
-    </list>
+    <list default="true" id="3b349326-3c08-46a0-b5cd-0872972fdbbc" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +26,7 @@
     <session id="762179245">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.45" value="1" />
@@ -498,7 +486,7 @@
       <workItem from="1543126346051" duration="20916000" />
       <workItem from="1543281591143" duration="8705000" />
       <workItem from="1543389036571" duration="1818000" />
-      <workItem from="1543541815743" duration="10183000" />
+      <workItem from="1543541815743" duration="10381000" />
     </task>
     <task id="LOCAL-00001" summary="fd">
       <created>1542900445346</created>
@@ -577,21 +565,29 @@
       <option name="project" value="LOCAL" />
       <updated>1543483039962</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Merge branch 'master' of https://github.com/ershisilang/webstorm&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1543570070013</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1543570070013</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149940000" />
+    <option name="totallyTimeSpent" value="150138000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1046" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24730022" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946004" visible="true" weight="0.017857144" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946004" weight="0.017857144" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
