@@ -8,7 +8,7 @@ $sendtime=$_POST["time"];
 
 
 
-/*
+
 
 
 
@@ -49,43 +49,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
  }
 
+ else {
 
- $dir = 'upload/'.iconv('UTF-8', 'gbk', basename($_FILES['file']['name']));
+     $dir = 'upload/'.iconv('UTF-8', 'gbk', basename($_FILES['file']['name']));
 
- //将用户上传的文件保存到upload目录中
- if (move_uploaded_file($_FILES['file']['tmp_name'], $dir)) {
-     echo '文件上传成功';
- } else {
-     echo '文件上传失败';
- }
+     //将用户上传的文件保存到upload目录中
+     if (move_uploaded_file($_FILES['file']['tmp_name'], $dir)) {
+         echo '文件上传成功';
+     } else {
+         echo '文件上传失败';
+     }
 
 //插入数据库;插入提醒表;修改数据库密码
 
- $dbhost = 'localhost:3306'; // mysql服务器主机地址
- $dbuser = 'root'; // mysql用户名
- $dbpass = '@001xiaoshidaI'; // mysql用户名密码
- $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
- if (!$conn) {
-     die('连接失败: ' . mysqli_error($conn));
- }
- echo '连接成功<br />';
+     $dbhost = 'localhost:3306'; // mysql服务器主机地址
+     $dbuser = 'root'; // mysql用户名
+     $dbpass = '@001xiaoshidaI'; // mysql用户名密码
+     $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+     if (!$conn) {
+         die('连接失败: ' . mysqli_error($conn));
+     }
+     echo '连接成功<br />';
 // 设置编码，防止中文乱码
-mysqli_select_db($conn, 'test');
- mysqli_query($conn, "set names utf8");
+     mysqli_select_db($conn, 'test');
+     mysqli_query($conn, "set names utf8");
 
 
 
 
-$sql = "INSERT INTO  alert  (sendtel,filename,sendtime, filepath)
+     $sql = "INSERT INTO  alert  (sendtel,filename,sendtime, filepath,alert_audit_state)
      VALUES
-     ('$accept_tel','$filename','$sendtime','$dir')";
+     ('$accept_tel','$filename','$sendtime','$dir','0')";
 
- $result = mysqli_query($conn, $sql);
- if (!$result) {
-     die('无法插入数据: ' . mysqli_error($conn));
+     $result = mysqli_query($conn, $sql);
+     if (!$result) {
+         die('无法插入数据: ' . mysqli_error($conn));
+     }
+     echo "数据插入成功\n";
+     mysqli_close($conn);
+     echo "<script language='javascript' type='text/javascript'>";
+     echo "window.location.href='./alertlist.php'";
+     echo "</script>";
  }
- echo "数据插入成功\n";
- mysqli_close($conn);
+
 
 
 //插入成功，向接口发送ajax请求，回调函数再次插入数据库改变状态
@@ -93,8 +99,9 @@ $sql = "INSERT INTO  alert  (sendtel,filename,sendtime, filepath)
 
 
 }
-*/
-header("404.html");
+
+
+
 
 
 ?>

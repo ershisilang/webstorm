@@ -145,14 +145,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#"  onclick="javascript:window.location.href='index.html'">首页<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.html"   >首页<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"  onclick="javascript:window.location.href='price1.html'">产品价格</a>
+                <a class="nav-link" href="price1.html"   >产品价格</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#"   onclick="javascript:window.location.href='aboutus.html'">关于我们</a>
+                <a class="nav-link" href="aboutus.html"     >关于我们</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -252,57 +252,6 @@
 
 <script>
 
-    $('#sign_button').click(function(){
-
-        document.getElementById("tip").innerText == '';
-        var reg_tel = $("#reg_tel").val();
-        var reg_pas1 =$("#reg_pas1").val();
-        var reg_pas2 =$("#reg_pas2").val();
-        var regdata = "reg_tel=" + reg_tel + "&reg_pas1=" + reg_pas1 + "&reg_pas2=" + reg_pas2;
-
-        if(reg_tel == "" ||reg_tel == null){
-            $("#reg_tel").focus;
-            $("#logintip").html("请输入手机号码。")
-
-        }else if(reg_pas1 == "" || reg_pas1 == null){
-            $("#reg_pas1").focus;
-            $("#logintip").html("请输入密码。")
-
-        else if(reg_pas2 == "" || reg_pas2 == null){
-                $("#reg_pas1").focus;
-                $("#logintip").html("请确认密码。")
-
-            else if(reg_pas1!==reg_pas2){
-                    $("#reg_pas1").focus;
-
-                    $("#logintip").html("密码不一致。");
-
-            }else{
-
-                    $.ajax({
-                        method: "post",
-                        url: "reg_sign.php",
-                        data: regdata,
-                        success: function(data)
-                        {
-                            if(data='注册成功，请登录')
-                            {
-
-                                $('#register').modal('hide');
-                                $('#login').modal('show');
-                                $("#logintip").html('注册成功，请登录');
-
-                            }
-                            else{
-                                $("#tip").html(data);
-                            }
-
-                        }
-                    });
-
-
-
-            }
 
 
 
@@ -333,7 +282,7 @@
 
         });
 
-    });
+    })
 
 
 
