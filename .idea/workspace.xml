@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b349326-3c08-46a0-b5cd-0872972fdbbc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/indextest.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/upload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploadactiontest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/draft/afterlogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alertlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/alertlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index_alreadylogin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sessionvalidation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/signu/reg_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/reg_sign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testmainpage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploadaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/draft/uploadaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validationcode.html" beforeDir="false" afterPath="$PROJECT_DIR$/draft/validationcode.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +73,7 @@
     <session id="-64875404">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.20" value="1" />
@@ -432,8 +418,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\PhpstormProjects\webstorm" />
       <recent name="C:\Users\Administrator\PhpstormProjects\webstorm\draft" />
+      <recent name="C:\Users\Administrator\PhpstormProjects\webstorm" />
       <recent name="C:\xampp\htdocs\inform" />
       <recent name="C:\xampp\htdocs\inform\signu" />
       <recent name="C:\Users\Administrator\PhpstormProjects\webstorm\signu" />
@@ -608,11 +594,25 @@
       <option name="project" value="LOCAL" />
       <updated>1543827160539</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Merge branch 'master' of https://github.com/ershisilang/webstorm&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1543850355967</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1543850355967</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Merge branch 'master' of https://github.com/ershisilang/webstorm&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1543850430848</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1543850430848</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226089000" />
+    <option name="totallyTimeSpent" value="226777000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
