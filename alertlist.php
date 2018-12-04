@@ -1,18 +1,16 @@
 <?php
 
-
+session_start();
 if (!isset($_SESSION['name'])) {
 
     header("Location:price1.html");
     exit;
 } else {
 
+$username=$_SESSION['name'];
 
-    header("Location:index_alreadylogin.html");
-    exit;
-    die("您无权访问");
 
-}
+
 
 
 $dbhost = 'localhost:3306'; // mysql服务器主机地址
@@ -24,7 +22,21 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
-$result = mysqli_query($conn,"SELECT userid, password FROM user");
+
+
+$sql = "SELECT filename, sendtime,sendtel,
+alert_audit_state  FROM alert WHERE username='$username' AND alert_audit_state='0'";//检测数据库是否有对应的username和password的sql
+
+    $result=mysqli_query($conn,$sql);
+    /*
+    if(! $result )
+    {
+        die('无法插入数据: ' . mysqli_error($conn));
+    }
+    echo "数据插入成功\n";
+    */
+}
+
 ?>
 
 
@@ -70,7 +82,7 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
                     Dropdown
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item"    href="session.php">logout</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
@@ -90,8 +102,10 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
 
         <thead>
         <tr>
-            <th>dd</th>
+            <th>d</th>
             <th>ff</th>
+            <th>t</th>
+            <th>w</th>
 
         </tr>
         </thead>
@@ -101,8 +115,10 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
             {
                 echo '
             <tr>
-            <th>'.$row["userid"].'</th>
-            <th>'.$row["password"].'</th>            
+            <th>'.$row["filename"].'</th>
+            <th>'.$row["sendtime"].'</th>    
+            <th>'.$row["alert_audit_state"].'</th>     
+            <th>'.$row["sendtel"].'</th>       
         </tr>      
              ';
             }
@@ -151,6 +167,18 @@ $(document).ready(function()
             }
         }
     });
+
+    $('#logout').click(function(){
+
+        $.ajax({
+            method: "post",
+            url: "logout.php",
+
+
+
+
+        });
+    }
 
 </script>
 
