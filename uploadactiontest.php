@@ -8,7 +8,7 @@ $sendtime=$_POST["time"];
 
 
 
-/*
+
 
 
 
@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "请输入接收人手机号";
     }
+
 
 
 
@@ -34,14 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  }
 
  //音频文件
- else if ((($_FILES['file']['type'] !== "audio/wma")
-     || ($_FILES['file']['type'] !== "audio/mp3"))) {
 
-     echo "请上传mp3或wav格式的音频文件";
 
- }
 
- else if ($_FILES['file']['size'] < 200) {
+ else if ($_FILES['file']['size'] < 400) {
 
      echo "音频文件大小需小于400k";
 
@@ -90,11 +87,12 @@ $sql = "INSERT INTO  alert  (sendtel,filename,sendtime, filepath)
 
 //插入成功，向接口发送ajax请求，回调函数再次插入数据库改变状态
 
+    header("Location:alertlist.php");
 
 
 }
-*/
-header("404.html");
+
+
 
 
 ?>
