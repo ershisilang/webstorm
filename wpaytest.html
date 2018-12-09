@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="goods_btn">
+    <div class="buy" onclick="GetPay()">立即购买</div>
+</div>
+<script type="text/javascript">
+    //接入微信扫码支付
+    function GetPay() {
+        //用ajax获取到支付的二维码
+        var payQrcode = '';
+        var payPrice = '';
+        var payOrderCode = '';
+        $.get('/getPayQrcode.php',{"goodsId":"<?php echo $goodsInfo->id;?>"},function(ret){
+            var obj = JSON.parse(ret)
+            if (obj.status == 'success') {
+                payQrcode = 'http://www.baidu.com'+obj.msg;
+                payPrice = obj.price;
+                payOrderCode = obj.code;
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-demo', //样式类名
+                    closeBtn: 0, //不显示关闭按钮
+                    title:false,
+                    anim: 2,
+                    area: ['300px', '450px'],
+                    shadeClose: true, //开启遮罩关闭
+                    content: '<div style="color: #666;margin: 5px 0 0 10px;position: absolute;right:.5rem;" onclick="layer.closeAll()">X</div>'+'<div style="text-align: center;"><img style="width: 4rem;padding:2rem 0 1rem 0;" src="./images/wx.png" alt="" /><br><b style="font-weight: 100;color: #888;">请打开微信 扫码进行支付 </b><div class="blank"></div>支付金额：<span style="color: red;">'+payPrice+'</span> 元</div><div class="blank"></div>'+'<div style="text-align: center"><img src="'+payQrcode+'" class="resize" style="width:70%;"></div><div id="myDiv" style="width: 100%;height: 1.5rem;bottom: 2rem;position:absolute;text-align:center;font-size: 1.2rem;color: #04BE02;"></div><div id="timer" style="display:none;">0</div>'
+                });
+
+                // 设置每隔1000毫秒执行一次load() 方法
+                var myIntval=setInterval(function(){load()},1000);
+                function load(){
+                    //document.getElementById("timer").innerHTML=parseInt(document.getElementById("timer").innerHTML)+1;
+                    var xmlhttp;
+                    if (window.XMLHttpRequest){
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp=new XMLHttpRequest();
+                    }else{
+                        // code for IE6, IE5
+                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange=function(){
+                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                            trade_state=JSON.parse(xmlhttp.responseText);
+                            console.log(trade_state);
+
+                            if(trade_state.code=='SUCCESS'){
+                                document.getElementById("myDiv").innerHTML='支付成功';
+                                //alert(transaction_id);
+                                //延迟3000毫秒执行tz() 方法
+                                clearInterval(myIntval);
+                                setTimeout("location.href='./",1500);
+
+                            }else if(trade_state.code=='REFUND'){
+                                document.getElementById("myDiv").innerHTML='转入退款';
+                                clearInterval(myIntval);
+                            }else if(trade_state.code=='NOTPAY'){
+                                document.getElementById("myDiv").innerHTML='请扫码支付';
+
+                            }else if(trade_state.code=='CLOSED'){
+                                document.getElementById("myDiv").innerHTML='已关闭';
+
+
+                            </body>
+</html>

@@ -80,7 +80,7 @@
     </div>
 </nav>
 
-
+<script src="layer.js的路径"></script>
 
 <script src="laydate/laydate.js"></script>
 <script>

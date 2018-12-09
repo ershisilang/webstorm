@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['name'])) {
 
-    header("Location:price1.html");
+    header("Location:404.html");
     exit;
 } else {
 
