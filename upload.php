@@ -193,7 +193,7 @@
                            else{
                                $.ajax(
                                    {
-                                       url: 'uploadactiontest.php',
+                                       url: 'calltest.php',
                                        type: 'POST',
                                        data: fm,
                                        contentType: false, //禁止设置请求类型
@@ -214,4 +214,5 @@
 
 </body>
 </html>
+
 
