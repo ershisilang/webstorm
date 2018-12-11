@@ -31,7 +31,7 @@ $sql="SELECT tel FROM user WHERE tel= '$username'";
    else
        if($num==1)
            {
-               echo "手机号已注册，请登录或更换其他手机号注册";
+               echo "该手机号已注册，请更换手机注册或直接登陆";
            }
 
                else
@@ -41,8 +41,8 @@ $sql="SELECT tel FROM user WHERE tel= '$username'";
                    }
                    else
                    {
-                      mysqli_query($conn,"insert into user(username,tel,password,)values ('$username',$username','$password2')");
-                       echo"注册成功，请登录";
+                      mysqli_query($conn,"INSERT  INTO user(username,tel,password) VALUES('$username','$username','$password2')");
+                       echo json_encode("注册成功，请登录");
                    }
 
 mysqli_close($conn);

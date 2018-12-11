@@ -1,4 +1,6 @@
 <?php
+
+/*
 session_start();
 
 if (!isset($_SESSION['name'])) {
@@ -12,7 +14,7 @@ if (!isset($_SESSION['name'])) {
     $ismember=$_SESSION['ismember'];
     $numcheck=$_SESSION['numcheck'];
 
-
+*/
 
 ?>
 
@@ -104,10 +106,10 @@ if (!isset($_SESSION['name'])) {
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    我的
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="my" href="#">退出</a>
+                    <a class="dropdown-item" id="my" href="session.php">退出</a>
 
                 </div>
             </li>
