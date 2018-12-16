@@ -1,19 +1,8 @@
 <?php
-require "./qcloudsms_php/src/index.php";
 
-use Qcloud\Sms\SmsVoicePromptSender;
-
-
-$appid =1400166420; // 1400开头
-// 短信应用SDK AppKey
-$appkey = "e4bed6323edb904de137ccb172a484be";
-// 需要发送短信的手机号码
-$phoneNumbers = ["13880478475", "15114097143"];
-
-// 定义变量并默认设置为空值
 
 $accept_tel=$_POST["tel"];
-$filename=$_POST["filename"];
+$filename=$_POST["content"];
 $sendtime=$_POST["time"];
 
 
@@ -34,17 +23,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
  else if (empty($_POST["filename"])) {
-     echo "请输入文件名（汉字或英文字母）";
+     echo "请输入电话通知内容";
 
  }
 
 
 
  else if (empty($_POST["time"])) {
-     echo "请xuanzetime";
+     echo "请选择发送电话时间";
  }
 
  //音频文件
+ /*
  else if ((($_FILES['file']['type'] !== "audio/wma")
      || ($_FILES['file']['type'] !== "audio/mp3"))) {
 
@@ -59,31 +49,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
  }
-
+    */
  else {
 
 
 
 
-     try {
-         $vpsender = new SmsVoicePromptSender($appid, $appkey);
-         $result = $vpsender->send("86", $phoneNumbers[0], 2, "5678", "");
-         $rsp = json_decode($result);
-         echo $result;
-     } catch (\Exception $e) {
-         echo var_dump($e);
-     }
+     /*
 
 
+    $dir = 'upload/'.iconv('UTF-8', 'gbk', basename($_FILES['file']['name']));
 
-     $dir = 'upload/'.iconv('UTF-8', 'gbk', basename($_FILES['file']['name']));
+    //将用户上传的文件保存到upload目录中
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $dir)) {
+        echo '文件上传成功';
+    } else {
+        echo '文件上传失败';
+    }
 
-     //将用户上传的文件保存到upload目录中
-     if (move_uploaded_file($_FILES['file']['tmp_name'], $dir)) {
-         echo '文件上传成功';
-     } else {
-         echo '文件上传失败';
-     }
+    */
+
 
 //插入数据库;插入提醒表;修改数据库密码
 

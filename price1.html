@@ -123,7 +123,7 @@
                     <li>每月60次电话通知</li>
 
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">立即购买</button>
+                <button type="button" class="btn btn-lg btn-block btn-primary"  onclick="$('#register').modal('show')">立即购买</button>
             </div>
         </div>
         <div class="card mb-4 shadow-sm">
@@ -136,7 +136,7 @@
                     <li>每月60次电话通知</li>
 
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">立即购买</button>
+                <button type="button"   onclick="$('#register').modal('show')"  class="btn btn-lg btn-block btn-primary">立即购买</button>
             </div>
         </div>
     </div>
@@ -157,38 +157,229 @@
                 </button>
             </div>
             <div class="modal-title">
-                <h2 class="text-center">title</h2>
+                <h1 class="text-center">注册</h1>
             </div>
 
-            <div id="textbox">
-                <p class="alignleft">Text on the left.</p>
-                <p class="alignright">Text on the right.</p>
+            <div class="modal-body">
+                <form class="form-group" action="">
+                    <div class="form-group">
+
+                        <label for="reg_tel">手机号</label>
+                        <input class="form-control" type="text" id="reg_tel" name="reg_tel" placeholder="请输入11位手机号">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_pas1">密码</label>
+                        <input class="form-control" type="password"   id="reg_pas1" name="reg_pas1" placeholder="至少6位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_pas2">再次输入密码</label>
+                        <input class="form-control" type="password"   id="reg_pas2" name="reg_pas2" placeholder="至少6位字母或数字">
+                    </div>
+                    <div style="color:#F00" id="tip"></div>
+                    <div class="text-right">
+                        <button class="btn btn-primary"  id="sign_button"  name="sign_button" type="button">提交</button>
+                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                    </div>
+                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？马上登录</a>
+                </form>
             </div>
-
-
-            <div id="textbox2">
-                <p class="alignleft">Text on the left.</p>
-                <p class="alignright">Text on the right.</p>
-            </div>
-
-            <div id="textbox3">
-                <p class="alignleft">Text on the left.</p>
-                <p class="alignright">Text on the right.</p>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" id="ordersumbit" class="btn btn-primary btn-lg btn-block">agree</button>
-            </div>
-
-
-
-
-
-
-
         </div>
     </div>
 </div>
+
+
+<!-- 登录窗口 -->
+<div id="login" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-title">
+                <h1 class="text-center">登录</h1>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" action="">
+                    <div class="form-group">
+
+                        <label for="login_tel">手机号</label>
+                        <input class="form-control" type="text" id="login_tel" name="login_tel" placeholder="请输入11位手机号">
+                    </div>
+                    <div class="form-group">
+                        <label for="login_pas">密码</label>
+                        <input class="form-control" type="password"   id="login_pas" name="login_pas" placeholder="请输入密码">
+                    </div>
+                    <div style="color:#F00" id="logintip"></div>
+                    <div class="text-right">
+                        <button class="btn btn-primary"  id="login_button"  name="login_button" type="button">登录</button>
+                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                    </div>
+                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">没有账号？注册</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+
+    $('#sign_button').click(function(){
+
+        document.getElementById("tip").innerText == '';
+        var reg_tel = $("#reg_tel").val();
+        var reg_pas1 =$("#reg_pas1").val();
+        var reg_pas2 =$("#reg_pas2").val();
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验用户名
+
+        var reg=/^[0-9]{6,16}$|^[a-zA-Z]{6,16}$/;//校验密码
+        var regdata = "reg_tel=" + reg_tel + "&reg_pas1=" + reg_pas1 + "&reg_pas2=" + reg_pas2;
+
+        if(reg_tel == "" ||reg_tel == null){
+            $("#reg_tel").focus;
+            $("#tip").html("请输入手机号码")
+
+        }
+
+
+
+        else if(!myreg.test(reg_tel)){
+            $("#reg_tel").focus;
+            $("#tip").html("请输入11位手机号")
+        }
+
+
+
+        else if(reg_pas1 == "" ||reg_pas1 == null){
+            $("#reg_pas1").focus;
+            $("#tip").html("请输入密码")
+        }
+
+        else if(!reg.test(reg_pas1)){
+            $("#reg_pas1").focus;
+            $("#tip").html("请输入6-16个英文字母或数字的密码")
+        }
+
+
+
+        else if(reg_pas2 == "" ||reg_pas2 == null){
+            $("#reg_pas2").focus;
+            $("#tip").html("请再次输入密码")
+        }
+
+
+
+
+        else if(!reg.test(reg_pas2)){
+            $("#reg_pas2").focus;
+            $("#tip").html("请输入6-16个英文字母或数字的密码")
+        }
+
+
+        else if(reg_pas1!==reg_pas2){
+            $("#reg_pas1").focus;
+
+            $("#tip").html("两次输入密码不一致");
+
+        }
+        else{
+            var status = '';
+            $.ajax({
+                method: "post",
+                url: "reg_sign.php",
+                data: regdata,
+
+                success: function(data)
+                {
+
+                    status = data;
+                    if(status=="注册成功，请登录")
+                    {
+
+                        $('#register').modal('hide');
+                        $('#login').modal('show');
+                        $("#logintip").html('注册成功，请重新登录');
+
+                    }
+                    else{
+                        $("#tip").html(data);
+                    }
+
+                }
+            });
+
+        }
+
+    });
+
+
+
+
+    $('#login_button').click(function(){
+
+        document.getElementById("logintip").innerText == '';
+        var login_tel = $("#login_tel").val();
+        var login_pas =$("#login_pas").val();
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验用户名
+        var reg=/^[0-9]{6,16}$|^[a-zA-Z]{6,16}$/;//校验密码
+        var logindata = "login_tel=" + login_tel + "&login_pas=" + login_pas;
+
+        if(login_tel == "" ||login_tel == null){
+            $("#login_tel").focus;
+            $("#logintip").html("请输入手机号码")
+
+        }
+
+        else if(!myreg.test(login_tel)){
+            $("#reg_tel").focus;
+            $("#logintip").html("请输入正确格式的手机号")
+        }
+
+        else if(login_pas == "" ||login_pas == null){
+            $("#login_pas").focus;
+            $("#logintip").html("请输入密码")
+        }
+
+        else if(!reg.test(login_pas)){
+            $("#login_pas").focus;
+            $("#logintip").html("请输入6-16个英文字母或数字的密码")
+        }
+
+        else{
+
+            $.ajax({
+                method: "post",
+                url: "reg_sign.php",
+                data: logindata,
+                success: function(data)
+                {
+                    if(data='注册成功，请登录')
+                    {
+
+                        $('#register').modal('hide');
+                        $('#login').modal('show');
+                        $("#logintip").html('注册成功，请登录');
+
+                    }
+                    else{
+                        $("#logintip").html(data);
+                    }
+
+                }
+            });
+
+        }
+
+    });
+
+
+</script>
+
+
 
 
 

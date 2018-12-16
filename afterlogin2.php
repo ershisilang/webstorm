@@ -13,8 +13,11 @@ if (!isset($_SESSION['name'])) {
     $duecheck=$_SESSION['duecheck'];
     $ismember=$_SESSION['ismember'];
     $numcheck=$_SESSION['numcheck'];
-
+    $username=$_SESSION['name'] ;
 */
+
+
+
 
 ?>
 
@@ -137,7 +140,7 @@ if (!isset($_SESSION['name'])) {
                     <li>每月60次电话通知</li>
 
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">立即购买</button>
+                <button type="button"  id="paymonth"  type="submit"   class="btn btn-lg btn-block btn-primary">立即购买</button>
             </div>
         </div>
         <div class="card mb-4 shadow-sm">
@@ -150,7 +153,7 @@ if (!isset($_SESSION['name'])) {
                     <li>每月60次电话通知</li>
 
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">立即购买</button>
+                <button type="button" id="payannual" class="btn btn-lg btn-block btn-primary">立即购买</button>
             </div>
         </div>
     </div>
@@ -162,7 +165,7 @@ if (!isset($_SESSION['name'])) {
 
 
 
-<!-- 注册窗口 -->
+<!-- 微信二维码弹窗 -->
 <div id="register" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -194,51 +197,42 @@ if (!isset($_SESSION['name'])) {
             <div class="modal-footer">
                 <button type="button" id="ordersumbit" class="btn btn-primary btn-lg btn-block">agree</button>
             </div>
-
-
-
-
-
-
-
         </div>
     </div>
 </div>
 
 
 
+<script>
+
+
+    $("#paymonth").click(function(){
+        var form = $("<form method='post'></form>");
+        form.attr({"action":"alipay.trade.page.pay-PHP-UTF-8/pagepay/pagepay.php"});
+        var WIDout_trade_no1="";  //订单号
+        for(var i=0;i<6;i++) //6位随机数，用以加在时间戳后面。
+        {
+            WIDout_trade_no1 += Math.floor(Math.random()*10);
+        }
+        WIDout_trade_no1 = new Date().getTime() + WIDout_trade_no1;  //时间
+        var input1 = $("<input type='hidden'>").attr("name", "WIDout_trade_no").val(WIDout_trade_no1);
+        var input2 = $("<input type='hidden'>").attr("name", "WIDsubject").val("爱通知包月套餐15.00元" );
+        var input3 = $("<input type='hidden'>").attr("name", "WIDbody").val("包月" );
+        var input4 = $("<input type='hidden'>").attr("name", "WIDtotal_amount").val("0.01");
+        form.append(input1);
+        form.append(input2);
+        form.append(input3);
+        form.append(input4);
+        // 这步很重要，如果没有这步，则会报错无法建立连接
+        $("body").append($(form));
+        form.submit();
+        }  );
+
+
+
+</script>
 
 
 
 </body>
 </html>
-
-<script type="text/javascript">
-
-    var ismember="<?php echo $ismember;?>";
-    var duecheck="<?php echo $duecheck;?>";
-    var numcheck="<?php echo $numcheck;?>";
-
-    $(document).ready(function() {
-        if (ismember=='0')
-        {
-            $("#check").html('选择版本，立即使用');
-
-        }
-        else if (duecheck=='0')
-        {
-            $("#check").html('您的会员已过期，请立即续费');
-
-
-        }
-        else if (numcheck=='0')
-        {
-            $("#check").html('您当月的次数已用尽（60次），请立即续费');
-
-        }
-
-
-
-
-    });
-</script>

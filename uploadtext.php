@@ -1,28 +1,8 @@
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-
-    <title>fd</title>
-
-    <meta name="keywords" content=" dfd">
-    <meta name="description" content=" fdfd">
-
-
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?24878ba02373ef0bb0a828acf30bb257";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
+    <title>f</title>
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -114,26 +94,115 @@
 <div class="container">
 
 
-    <p>您的会员开始时间为</p>
+    <div class="form-group">
+        <label for="tel">电话号码</label>
+        <input type="text" class="form-control" id="tel" name="tel"
+               placeholder="请输入接收人的电话号码,必填">
+    </div>
+
+    <div class="form-group">
+        <label for="content">通知内容</label>
+        <input type="text" class="form-control" id="content" name="content"
+               placeholder="请输入电话通知的内容（系统自动将文字转为语音）">
+    </div>
+
+
+    <div class="form-group">
+        <label for="name">发送时间</label>
+        <input type="text" id="time" name="time" placeholder="请选择日期">
+    </div>
+
+    <div style="color:#F00" id="uploadtip"></div>
 
 
 
-
-
-
-
+    <button type="button" class="btn btn-default" id="button">提交</button>
 
 
 </div>
 
+<!-- 前端校验  -->
+<script>
+
+
+    $('#button').click(function(){
+
+        document.getElementById("uploadtip").innerText == '';
+
+
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验手机
+
+        var regex = /^[u4e00-u9fa5·0-9A-z]+$/;//校验语音内容
+
+        var tel = $("#tel").val();
+        var content = $("#content").val();
+        var time = $("#time").val();
 
 
 
+        var fm = new FormData();
+
+        fm.append('tel', tel);
+        fm.append('content', filename);
+        fm.append('time', time);
+
+
+        if(tel == "" ||tel == null){
+            $("#tel").focus;
+            $("#uploadtip").html("请输入手机号码")
+
+        }
+
+
+        else if(!myreg.test(tel)){
+            $("#tel").focus;
+            $("#uploadtip").html("请输入正确格式的手机号")
+        }
+
+
+
+
+        else    if(!regex.test(content)){
+            $("#content").focus;
+            $("#uploadtip").html("请输入电话通知内容")
+
+        }
+
+
+
+        else if(time == "" ||time== null){
+            $("#time").focus;
+            $("#uploadtip").html("请选择发送时间")
+        }
+
+
+
+
+
+
+        else{
+            $.ajax(
+                {
+                    url: 'calltest.php',
+                    type: 'POST',
+                    data: fm,
+                    contentType: false, //禁止设置请求类型
+                    processData: false, //禁止jquery对DAta数据的处理,默认会处理
+                    //禁止的原因是,FormData已经帮我们做了处理
+                    success: function (data) {
+                        $("#uploadtip").html(data);
+
+                    }
+                }
+            );
+        }
+    });
+
+
+</script>
 
 
 </body>
 </html>
-
-
 
 
