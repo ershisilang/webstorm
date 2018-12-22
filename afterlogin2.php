@@ -1,8 +1,11 @@
 <?php
 
-/*
+
 session_start();
 
+$_SESSION['name'] = '13785858585';
+$username=$_SESSION['name'];
+/*
 if (!isset($_SESSION['name'])) {
 
     header("Location:price1.html");
@@ -14,9 +17,9 @@ if (!isset($_SESSION['name'])) {
     $ismember=$_SESSION['ismember'];
     $numcheck=$_SESSION['numcheck'];
     $username=$_SESSION['name'] ;
-*/
 
 
+ */
 
 
 ?>
@@ -215,6 +218,7 @@ if (!isset($_SESSION['name'])) {
             WIDout_trade_no1 += Math.floor(Math.random()*10);
         }
         WIDout_trade_no1 = new Date().getTime() + WIDout_trade_no1;  //时间
+        alert(WIDout_trade_no1);
         var input1 = $("<input type='hidden'>").attr("name", "WIDout_trade_no").val(WIDout_trade_no1);
         var input2 = $("<input type='hidden'>").attr("name", "WIDsubject").val("爱通知包月套餐15.00元" );
         var input3 = $("<input type='hidden'>").attr("name", "WIDbody").val("包月" );
@@ -226,7 +230,20 @@ if (!isset($_SESSION['name'])) {
         // 这步很重要，如果没有这步，则会报错无法建立连接
         $("body").append($(form));
         form.submit();
-        }  );
+        var name;
+        name="<?php echo $username;?>";
+        var regdata = "WIDout_trade_no1=" + WIDout_trade_no1 + "&name=" + name;
+
+
+            $.ajax({
+                method: "post",
+                url: "insertorder.php",
+                data: regdata,
+                              }
+            );
+
+           }  );
+
 
 
 
