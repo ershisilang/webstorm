@@ -210,8 +210,9 @@ if (!isset($_SESSION['name'])) {
 
 
     $("#paymonth").click(function(){
-        var form = $("<form method='post'></form>");
-        form.attr({"action":"alipay.trade.page.pay-PHP-UTF-8/pagepay/pagepay.php"});
+
+        var name;
+        name="<?php echo $username;?>";
         var WIDout_trade_no1="";  //订单号
         for(var i=0;i<6;i++) //6位随机数，用以加在时间戳后面。
         {
@@ -219,6 +220,20 @@ if (!isset($_SESSION['name'])) {
         }
         WIDout_trade_no1 = new Date().getTime() + WIDout_trade_no1;  //时间
         alert(WIDout_trade_no1);
+
+
+        $.ajax({
+                method: "post",
+                url: "insertorder.php",
+                data: {'WIDout_trade_no1':WIDout_trade_no1,'name':name},
+            }
+        );
+
+
+        var form = $("<form method='post'></form>");
+        form.attr({"action":"alipay.trade.page.pay-PHP-UTF-8/pagepay/pagepay.php"});
+
+
         var input1 = $("<input type='hidden'>").attr("name", "WIDout_trade_no").val(WIDout_trade_no1);
         var input2 = $("<input type='hidden'>").attr("name", "WIDsubject").val("爱通知包月套餐15.00元" );
         var input3 = $("<input type='hidden'>").attr("name", "WIDbody").val("包月" );
@@ -230,17 +245,6 @@ if (!isset($_SESSION['name'])) {
         // 这步很重要，如果没有这步，则会报错无法建立连接
         $("body").append($(form));
         form.submit();
-        var name;
-        name="<?php echo $username;?>";
-        var regdata = "WIDout_trade_no1=" + WIDout_trade_no1 + "&name=" + name;
-
-
-            $.ajax({
-                method: "post",
-                url: "insertorder.php",
-                data: regdata,
-                              }
-            );
 
            }  );
 
