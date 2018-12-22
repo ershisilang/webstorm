@@ -219,18 +219,14 @@ if (!isset($_SESSION['name'])) {
             WIDout_trade_no1 += Math.floor(Math.random()*10);
         }
         WIDout_trade_no1 = new Date().getTime() + WIDout_trade_no1;  //时间
-        alert(WIDout_trade_no1);
+        alert(name);
 
-
+        var resdata = "WIDout_trade_no1=" + WIDout_trade_no1 + "&name=" + name;
         $.ajax({
                 method: "post",
                 url: 'insertorder.php',
-            contentType: 'application/x-www-form-urlencoded',
+                data: resdata,
 
-                data: {WIDout_trade_no1:WIDout_trade_no1,name:name},
-            success : function(data){
-                window.location.href="insertorder.php";
-            }
             }
         );
 
