@@ -8,10 +8,6 @@ $sendtime=$_POST["time"];
 
 
 
-
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["tel"])) {
 
@@ -21,8 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
-    else if (empty($_POST["filename"])) {
+    else if (empty($_POST["content"])) {
         echo "请输入电话通知内容";
 
     }
@@ -38,10 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
-
-
-
 //插入数据库;插入提醒表;修改数据库密码
 
         $dbhost = 'localhost:3306'; // mysql服务器主机地址
@@ -49,36 +40,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dbpass = '@001xiaoshidaI'; // mysql用户名密码
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
         if (!$conn) {
-            die('连接失败: ' . mysqli_error($conn));
+            die('连接失败: ' );
         }
         echo '连接成功<br />';
 // 设置编码，防止中文乱码
         mysqli_select_db($conn, 'test');
         mysqli_query($conn, "set names utf8");
 
+        if(date('Ymd') == date('Ymd', strtotime($sendtime))){
 
 
+            $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime)
+     VALUES     ('$accept_tel','$content','$sendtime')";
+            mysqli_query($conn,$sql);
+            $orderid = mysqli_insert_id(($conn));
+            $sql2 = "INSERT INTO  todayalert  (sendtel,content,sendtime,alertid)
+     VALUES     ('$accept_tel','$content','$sendtime','$orderid')";
+            mysqli_query($conn,$sql2);
 
-        $sql = "INSERT INTO  alert  (sendtel,content,sendtime,)
-     VALUES
-     ('$accept_tel','$content','$sendtime')";
-
-        $result = mysqli_query($conn, $sql);
-        if (!$result) {
-            die('无法插入数据: ' . mysqli_error($conn));
+            mysqli_close($conn);
+            /*
+            echo "<script language='javascript' type='text/javascript'>";
+            echo "window.location.href='./alertlist.php'";
+            echo "</script>";
+            */
         }
-        echo "数据插入成功\n";
-        mysqli_close($conn);
-        echo "<script language='javascript' type='text/javascript'>";
-        echo "window.location.href='./alertlist.php'";
-        echo "</script>";
+        else{
+            $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime)
+     VALUES     ('$accept_tel','$content','$sendtime')";
+            mysqli_query($conn,$sql);
+            mysqli_close($conn);
+            /* echo "<script language='javascript' type='text/javascript'>";
+            echo "window.location.href='./alertlist.php'";
+            echo "</script>";
+            */
+
+        }
     }
-
-
-
-//插入成功，向接口发送ajax请求，回调函数再次插入数据库改变状态
-
-
 
 }
 

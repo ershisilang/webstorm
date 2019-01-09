@@ -13,8 +13,8 @@ echo "2\n";
 $filewebid=$data->$id;
 $filestate=$data->$state;
 
-$dbhost = 'localhost:3306'; // mysql服务器主机地址
-$dbuser = 'root'; // mysql用户名
+$dbhost = '39.105.188.97:3306'; // mysql服务器主机地址
+$dbuser = 'admin'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 

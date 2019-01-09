@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,7 +82,7 @@
     </div>
 </nav>
 
-<script src="layer.js的路径"></script>
+
 
 <script src="laydate/laydate.js"></script>
 <script>
@@ -112,11 +114,11 @@
         <input type="text" id="time" name="time" placeholder="请选择日期">
     </div>
 
-    <div style="color:#F00" id="uploadtip"></div>
+    <div style="color:#F00" id="uploadtip">发的发的发</div>
 
 
 
-    <button type="button" class="btn btn-default" id="button">提交</button>
+    <button type="button" class="btn btn-default" id="uploadbutton">提交</button>
 
 
 </div>
@@ -125,26 +127,27 @@
 <script>
 
 
-    $('#button').click(function(){
+    $('#uploadbutton').click(function(){
 
         document.getElementById("uploadtip").innerText == '';
 
 
-        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验手机
+        var myreg =/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验手机
 
-        var regex = /^[u4e00-u9fa5·0-9A-z]+$/;//校验语音内容
+
 
         var tel = $("#tel").val();
         var content = $("#content").val();
         var time = $("#time").val();
 
+        var reg = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5]+$");
+        //获取输入框中的值
+        var content= document.getElementById("content").value.trim();
+        //判断输入框中有内容
 
 
-        var fm = new FormData();
+        var fm ="tel=" + tel + "&content=" + content + "&time=" + time;
 
-        fm.append('tel', tel);
-        fm.append('content', filename);
-        fm.append('time', time);
 
 
         if(tel == "" ||tel == null){
@@ -156,17 +159,22 @@
 
         else if(!myreg.test(tel)){
             $("#tel").focus;
-            $("#uploadtip").html("请输入正确格式的手机号")
+            $("#uploadtip").html("请输入11位手机号")
         }
 
-
-
-
-        else    if(!regex.test(content)){
+        else if(content == "" ||content == null){
             $("#content").focus;
-            $("#uploadtip").html("请输入电话通知内容")
-
+            $("#uploadtip").html("请输入通知内容")
         }
+
+
+        else  if (!reg.test(content))
+        {
+            $("#content").focus;
+            $("#uploadtip").html("通知内容仅能包含汉字,数字或者英文")
+        }
+
+
 
 
 
@@ -176,19 +184,12 @@
         }
 
 
-
-
-
-
         else{
             $.ajax(
                 {
-                    url: 'calltest.php',
-                    type: 'POST',
+                    method: "post",
+                    url: 'uploadtest.php',
                     data: fm,
-                    contentType: false, //禁止设置请求类型
-                    processData: false, //禁止jquery对DAta数据的处理,默认会处理
-                    //禁止的原因是,FormData已经帮我们做了处理
                     success: function (data) {
                         $("#uploadtip").html(data);
 

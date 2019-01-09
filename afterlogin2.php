@@ -3,7 +3,7 @@
 
 session_start();
 
-$_SESSION['name'] = '13785858585';
+$_SESSION['name'] = '13880478475';
 $username=$_SESSION['name'];
 /*
 if (!isset($_SESSION['name'])) {
@@ -209,7 +209,7 @@ if (!isset($_SESSION['name'])) {
 <script>
 
 
-    $("#paymonth").click(function(){
+    $('#paymonth').click(function(){
 
         var name;
         name="<?php echo $username;?>";
@@ -219,17 +219,33 @@ if (!isset($_SESSION['name'])) {
             WIDout_trade_no1 += Math.floor(Math.random()*10);
         }
         WIDout_trade_no1 = new Date().getTime() + WIDout_trade_no1;  //时间
-        alert(name);
 
         var resdata = "WIDout_trade_no1=" + WIDout_trade_no1 + "&name=" + name;
+
         $.ajax({
                 method: "post",
-                url: 'insertorder.php',
-                data: resdata,
-
+                url: "insertorder.php",
+                 data:resdata,
             }
         );
 
+
+        var form = $("<form method='post'></form>");
+        form.attr({"action":"alipay.trade.page.pay-PHP-UTF-8/pagepay/pagepay.php"});
+
+
+
+        var input1 = $("<input type='hidden'>").attr("name", "WIDout_trade_no").val(WIDout_trade_no1);
+        var input2 = $("<input type='hidden'>").attr("name", "WIDsubject").val("爱通知包月套餐15.00元" );
+        var input3 = $("<input type='hidden'>").attr("name", "WIDbody").val("包月" );
+        var input4 = $("<input type='hidden'>").attr("name", "WIDtotal_amount").val("0.01");
+        form.append(input1);
+        form.append(input2);
+        form.append(input3);
+        form.append(input4);
+// 这步很重要，如果没有这步，则会报错无法建立连接
+        $("body").append($(form));
+        form.submit();
 
 
 
