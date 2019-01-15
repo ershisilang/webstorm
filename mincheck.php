@@ -1,6 +1,6 @@
 <?php
 
-$dbhost = 'localhost:3306'; // mysql服务器主机地址
+$dbhost = '39.105.188.97'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
@@ -9,7 +9,7 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
 
-$sql = "select sendtel,alertid,content from todayalert ";
+$sql = "select sendtel,alertid,content from todayalert WHERE  DATE_FORMAT(sendtime, '%Y-%m-%d %k:%i') = DATE_FORMAT(NOW(), '%Y-%m-%d %k:%i')";
 $result=mysqli_query($conn,$sql);
 
 
@@ -25,9 +25,9 @@ while($profile = mysqli_fetch_array($result)){
     $senddata[] = $profile;
 }
 
-//print_r($senddata);
+print_r($senddata);
 
-/*
+
 if(!$senddata )
 {
     die('kong: ' );
@@ -39,7 +39,7 @@ if(is_array($senddata)){
 } else {
     echo '变量 $arr_site 不是一个数组';
 }
-*/
+
 //print_r($senddata);
 
 
