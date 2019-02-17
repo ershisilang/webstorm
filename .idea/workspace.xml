@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b349326-3c08-46a0-b5cd-0872972fdbbc" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/upload/ceshihuiyuanshijian.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mincheck.php" beforeDir="false" afterPath="$PROJECT_DIR$/mincheck.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my.php" beforeDir="false" afterPath="$PROJECT_DIR$/my.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recordlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/recordlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploadtext.php" beforeDir="false" afterPath="$PROJECT_DIR$/uploadtext.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -158,7 +153,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="uploadtext.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="uploadtext.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/uploadtext.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3213">
@@ -190,11 +185,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recordlist.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="recordlist.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recordlist.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+            <state relative-caret-position="-1431">
+              <caret line="34" column="58" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
+              <folding>
+                <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -526,7 +524,7 @@
       <workItem from="1548334105251" duration="4452000" />
       <workItem from="1550060147561" duration="3627000" />
       <workItem from="1550387754117" duration="7246000" />
-      <workItem from="1550403028136" duration="7458000" />
+      <workItem from="1550403028136" duration="7746000" />
     </task>
     <task id="LOCAL-00001" summary="fd">
       <created>1542900445346</created>
@@ -675,7 +673,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547043570225</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Default Changelist">
+      <created>1550412000757</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1550412000757</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -684,11 +689,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="442519000" />
+    <option name="totallyTimeSpent" value="442807000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="10" />
@@ -1034,13 +1038,6 @@
     <entry file="file://$PROJECT_DIR$/insertorder.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/recordlist.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mincheck.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1102,6 +1099,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3213">
           <caret line="119" column="6" lean-forward="true" selection-start-line="89" selection-end-line="119" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recordlist.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1431">
+          <caret line="34" column="58" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
+          <folding>
+            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
