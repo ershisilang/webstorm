@@ -30,42 +30,40 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
 </head>
 <body>
 
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">爱提醒管理后台</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item ">
+                <a class="nav-link" href="uploadtext.php">发送提醒 <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="recordlist.php">提醒记录</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+            <li class="nav-item ">
+                <a class="nav-link" href="my.php">我的</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    控制台
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" id="my" href="#">退出账号</a>
                 </div>
             </li>
         </ul>
 
     </div>
 </nav>
-
 
 <br /><br />
 <div class="container">
