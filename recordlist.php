@@ -1,5 +1,5 @@
 <?php
-
+$username='13880478475';
 $dbhost = 'localhost:3306'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
@@ -9,8 +9,7 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
-$result = mysqli_query($conn,"SELECT userid, password FROM user");
-
+$result = mysqli_query($conn,"SELECT content,sendtel,sendtime,recordstate FROM alertrecord where username='$username'");
 ?>
 
 
@@ -73,9 +72,10 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
 
                 <thead>
                 <tr>
-                    <th>dd</th>
-                    <th>ff</th>
-
+                    <th>接收电话</th>
+                    <th>发送时间</th>
+                    <th>发送状态</th>
+                    <th>发送内容</th>
                 </tr>
                 </thead>
                 <?php
@@ -83,9 +83,11 @@ $result = mysqli_query($conn,"SELECT userid, password FROM user");
                 while($row = mysqli_fetch_array($result))
                 {
                     echo '
-            <tr>
-            <th>'.$row["userid"].'</th>
-            <th>'.$row["password"].'</th>            
+            <tr>            
+            <th>'.$row["sendtel"].'</th>
+            <th>'.$row["sendtime"].'</th>
+            <th>'.$row["recordstate"].'</th> 
+            <th>'.$row["content"].'</th>           
         </tr>      
              ';
                 }

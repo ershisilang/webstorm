@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,7 +120,7 @@
 <!-- 前端校验  -->
 <script>
 
-
+    document.getElementById("uploadtip").innerText == '';
     $('#uploadbutton').click(function(){
 
         document.getElementById("uploadtip").innerText == '';
@@ -188,6 +186,9 @@
                     data: fm,
                     success: function (data) {
                         $("#uploadtip").html(data);
+                        setTimeout(function(){
+                            document.getElementById("uploadtip").innerHTML = "";
+                        }, 5000);
 
                     }
                 }

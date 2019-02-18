@@ -260,7 +260,7 @@
 
     $('#sign_button').click(function(){
 
-        document.getElementById("tip").innerText == '';
+        document.getElementById("tip").innerText = '';
         var reg_tel = $("#reg_tel").val();
         var reg_pas1 =$("#reg_pas1").val();
         var reg_pas2 =$("#reg_pas2").val();
@@ -326,13 +326,14 @@
                 success: function(data)
                 {
 
-                    status = data;
+                    var status = data;
+
                     if(status=="注册成功，请登录")
                     {
 
                         $('#register').modal('hide');
                         $('#login').modal('show');
-                        $("#logintip").html('注册成功，请重新登录');
+
 
                     }
                     else{
@@ -387,17 +388,9 @@
                 data: logindata,
                 success: function(data)
                 {
-                    if(data='注册成功，请登录')
-                    {
 
-                        $('#register').modal('hide');
-                        $('#login').modal('show');
-                        $("#logintip").html('注册成功，请登录');
-
-                    }
-                    else{
                         $("#logintip").html(data);
-                    }
+
 
                 }
             });
