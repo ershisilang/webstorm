@@ -1,5 +1,5 @@
 <?php
-$username='13880478475';
+$username='13880478471';
 $dbhost = 'localhost:3306'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
@@ -14,9 +14,21 @@ $startdate = mysqli_fetch_assoc($result);
 $sql1="select memduedate from user where username='$username'";
 $result1=mysqli_query($conn,$sql1);
 $duedate = mysqli_fetch_assoc($result1);
-$sql2="select resnum from user where username='$username'";
+
+
+$sql2='SELECT COUNT(*) FROM alertrecord WHERE date BETWEEN "$startdate"["memstartdate"] AND "$duedate"["memduedate"] ';
 $result2=mysqli_query($conn,$sql2);
-$res = mysqli_fetch_assoc($result2);
+if(!$result2 )
+{
+    die('无法读取数据ff : ' );
+}
+echo '<h2>菜鸟教程 mysqli_fetch_array 测试<h2>';
+$row = mysqli_fetch_row($result2);
+$res = $row[0];
+
+
+
+
 
 ?>
 

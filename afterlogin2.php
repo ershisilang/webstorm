@@ -115,7 +115,7 @@ if (!isset($_SESSION['name'])) {
                     我的
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="my" href="session.php">退出</a>
+                    <a class="dropdown-item" id="my"  onclick="logout()" href="session.php">退出</a>
 
                 </div>
             </li>
@@ -208,8 +208,16 @@ if (!isset($_SESSION['name'])) {
 
 <script>
 
+    function logout() {
+        $_SESSION = array(); //清除SESSION值.
+        if (isset($_COOKIE[session_name()])) {  //判断客户端的cookie文件是否存在,存在的话将其设置为过期.
+            setcookie(session_name(), '', time() - 1, '/');
+        }
+        session_destroy();
 
-    $('#paymonth').click(function(){
+    }
+
+        $('#paymonth').click(function(){
 
         var name;
         name="<?php echo $username;?>";
@@ -252,6 +260,48 @@ if (!isset($_SESSION['name'])) {
            }  );
 
 
+
+    $('#payannual').click(function(){
+
+        var name;
+        name="<?php echo $username;?>";
+        var WIDout_trade_no1="";  //订单号
+        for(var i=0;i<6;i++) //6位随机数，用以加在时间戳后面。
+        {
+            WIDout_trade_no1 += Math.floor(Math.random()*10);
+        }
+        WIDout_trade_no1 = new Date().getTime() + WIDout_trade_no1;  //时间
+
+        var resdata = "WIDout_trade_no1=" + WIDout_trade_no1 + "&name=" + name;
+
+        $.ajax({
+                method: "post",
+                url: "insertorder.php",
+                data:resdata,
+            }
+        );
+
+
+        var form = $("<form method='post'></form>");
+        form.attr({"action":"alipay.trade.page.pay-PHP-UTF-8/pagepay/pagepay.php"});
+
+
+
+        var input1 = $("<input type='hidden'>").attr("name", "WIDout_trade_no").val(WIDout_trade_no1);
+        var input2 = $("<input type='hidden'>").attr("name", "WIDsubject").val("爱通知包月套餐15.00元" );
+        var input3 = $("<input type='hidden'>").attr("name", "WIDbody").val("包月" );
+        var input4 = $("<input type='hidden'>").attr("name", "WIDtotal_amount").val("0.01");
+        form.append(input1);
+        form.append(input2);
+        form.append(input3);
+        form.append(input4);
+// 这步很重要，如果没有这步，则会报错无法建立连接
+        $("body").append($(form));
+        form.submit();
+
+
+
+    }  );
 
 
 </script>

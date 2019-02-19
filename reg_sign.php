@@ -42,7 +42,7 @@ $sql="SELECT tel FROM user WHERE tel= '$username'";
                    else
                    {
                       mysqli_query($conn,"INSERT  INTO user(username,tel,password) VALUES('$username','$username','$password2')");
-                       echo json_encode("注册成功，请登录");
+                       echo "注册成功，请登录";
                    }
 
 mysqli_close($conn);
