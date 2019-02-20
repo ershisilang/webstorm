@@ -9,7 +9,7 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
 
-$sql = "select sendtel,alertid,content from todayalert WHERE  DATE_FORMAT(sendtime, '%Y-%m-%d %k:%i') = DATE_FORMAT(NOW(), '%Y-%m-%d %k:%i')";
+$sql = "select sendtel,alertid,content from todayalert WHERE  DATE_FORMAT(sendtime, '%Y-%m-%d %k:%i') <= DATE_FORMAT(NOW(), '%Y-%m-%d %k:%i')";
 $result=mysqli_query($conn,$sql);
 
 
@@ -19,7 +19,8 @@ if(!$result )
 }
 echo '<h2>菜鸟教程 mysqli_fetch_array 测试<h2>';
 
-$senddata= mysqli_fetch_array($result);
+$senddata= mysqli_fetch_row($result);
+var_dump ($senddata);
 if(!$senddata )
 {
     die('kong: ' );
@@ -33,11 +34,13 @@ if(is_array($senddata)){
 }
 
 for($i=0;$i<count($senddata);++$i) {
-    $id = $senddata[$i][0];
-    echo $id ;
-    $content = $senddata[$i][1];
-    $sendtel = $senddata[$i][2];
 
+   $id = $senddata[$i];
+ echo $id;
+    $content = $senddata[$i][1];
+    //echo $content;
+    $sendtel = $senddata[$i][2];
+    //echo $sendtel ;
     function send_post($url, $post_data)
     {
 
@@ -75,7 +78,7 @@ for($i=0;$i<count($senddata);++$i) {
         $result = mysqli_query($conn, $sql);
 
         if (!$result) {
-            die('1无法插入数据: ' . mysqli_error($conn));
+            die('无法插入数据: ' . mysqli_error($conn));
         }
         echo "数据插入成功\n";
         $sql = "DELETE FROM todayalert
@@ -91,7 +94,7 @@ for($i=0;$i<count($senddata);++$i) {
 
 
     } else {
-        $sql1 = "update alertrecord(recordstate,msg) VALUES('$phpdata[status]','$phpdata[msg]') WHERE recordid='$id";
+        $sql1 = "update alertrecord(recordstate,msg) VALUES('$phpdata[status]','$phpdata[msg]') WHERE recordid='$id'";
         $data = mysqli_query($conn, $sql1);
         if (!$data) {
             die('2无法插入数据: ' . mysqli_error($conn));

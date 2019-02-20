@@ -26,10 +26,6 @@ echo '<h2>菜鸟教程 mysqli_fetch_array 测试<h2>';
 $row = mysqli_fetch_row($result2);
 $res = $row[0];
 
-
-
-
-
 ?>
 
 <!DOCTYPE html>
