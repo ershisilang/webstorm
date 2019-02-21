@@ -9,8 +9,16 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
 
+
+
 $sql = "select sendtel,alertid,content from todayalert WHERE  DATE_FORMAT(sendtime, '%Y-%m-%d %k:%i') <= DATE_FORMAT(NOW(), '%Y-%m-%d %k:%i')";
 $result=mysqli_query($conn,$sql);
+
+
+$senddata = array();
+
+while ($row_user = mysqli_fetch_assoc($result))
+    $senddata[] = $row_user;
 
 
 if(!$result )
@@ -19,7 +27,7 @@ if(!$result )
 }
 echo '<h2>菜鸟教程 mysqli_fetch_array 测试<h2>';
 
-$senddata= mysqli_fetch_row($result);
+
 var_dump ($senddata);
 if(!$senddata )
 {
