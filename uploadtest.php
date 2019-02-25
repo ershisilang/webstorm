@@ -1,6 +1,7 @@
 <?php
 
 
+
 $accept_tel=$_POST["tel"];
 $content=$_POST["content"];
 $sendtime=$_POST["time"];
@@ -30,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     else {
-
 
 
 //插入数据库;插入提醒表;修改数据库密码

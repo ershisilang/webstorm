@@ -81,7 +81,7 @@ for($i=0;$i<count($senddata);++$i) {
 
 
     if ($phpdata['status'] == "success") {
-        $sql = "update alertrecord(recordstate,alertid) VALUES($phpdata[status]','$phpdata[send_id]') WHERE recordid='$id'";
+        $sql = "update alertrecord(recordstate,alertid) VALUES('$phpdata[status]','$phpdata[send_id]') WHERE recordid='$id'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -89,11 +89,9 @@ for($i=0;$i<count($senddata);++$i) {
             die('无法插入数据: ' . mysqli_error($conn));
         }
         echo "数据插入成功\n";
-        $sql = "DELETE FROM todayalert
-        WHERE alertid='$id'";
+        $sql1 = "update todayalert(sendstate,send_id) VALUES('$phpdata[status]','$phpdata[send_id]') WHERE alertid='$id'";
 
-        mysqli_select_db($conn, 'test');
-        $retval = mysqli_query($conn, $sql);
+        $retval = mysqli_query($conn, $sql1);
         if (!$retval) {
             die('无法删除数据: ' . mysqli_error($conn));
         }
