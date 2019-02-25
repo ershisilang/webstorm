@@ -16,7 +16,7 @@ $result1=mysqli_query($conn,$sql1);
 $duedate = mysqli_fetch_assoc($result1);
 
 
-$sql2='SELECT COUNT(*) FROM alertrecord WHERE date BETWEEN "$startdate"["memstartdate"] AND "$duedate"["memduedate"] ';
+$sql2='SELECT COUNT(*) FROM alertrecord WHERE  sendtime(time AS DATE) BETWEEN "$startdate"["memstartdate"] AND "$duedate"["memduedate"] ';
 $result2=mysqli_query($conn,$sql2);
 if(!$result2 )
 {
