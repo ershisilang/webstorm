@@ -17,7 +17,7 @@ $duedate = mysqli_fetch_assoc($result1);
 echo $startdate["memstartdate"];
 echo $duedate["memduedate"];
 
-$sql2='SELECT COUNT(*) FROM alertrecord WHERE  DATE(sendtime)BETWEEN STR_TO_DATE("$startdate[memstartdate]", "%Y-%m-%d")  AND STR_TO_DATE("$duedate[memduedate]", "%Y-%m-%d")  ';
+$sql2="SELECT COUNT(*) FROM alertrecord WHERE  DATE(sendtime) BETWEEN STR_TO_DATE('{$startdate['memstartdate']}', '%Y-%m-%d')  AND STR_TO_DATE('{$duedate['memduedate']}', '%Y-%m-%d')";
 //$sql2='SELECT sendtime FROM alertrecord WHERE  DATE_FORMAT(sendtime,"%d/%m/%Y") AS formatted_date BETWEEN "$startdate"["memstartdate"] AND "$duedate"["memduedate"] ';
 $result2=mysqli_query($conn,$sql2);
 if(!$result2 )
