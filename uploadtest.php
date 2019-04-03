@@ -1,5 +1,5 @@
 <?php
-
+var_dump($_POST);
 $accept_tel= explode("，",$_POST['tel']);
 //$accept_tel = json_decode($_POST['tel'],TRUE);
 var_dump($accept_tel);
