@@ -18,7 +18,6 @@
         .nav{font-size:20px;
             color: #0084ff;
         }
-
         .container{
 
             padding-top:2em;
@@ -34,6 +33,12 @@
 
         #time{
             width:25em;
+        }
+        .border-radius(0) !important;
+        }
+
+        #field {
+            margin-bottom:20px;
         }
 
 
@@ -90,11 +95,18 @@
 <div class="container">
 
 
-    <div class="form-group">
+    <div class="form-group z"  id="TextBoxesGroup">
         <label for="tel">电话号码</label>
-        <input type="text" class="form-control" id="tel" name="tel"
+        <input type="text" class="form-control x" id="tel" name="name"
                placeholder="请输入接收人的电话号码,必填">
+
     </div>
+
+        <input type="button" id="addButton" value="Add More" />
+        <input type="button" id="removeButton" value="Remove" />
+
+
+
 
     <div class="form-group">
         <label for="content">通知内容</label>
@@ -120,17 +132,69 @@
 <!-- 前端校验  -->
 <script>
 
-    document.getElementById("uploadtip").innerText == '';
+
+
+
+    $(function () { // Short way for document ready.
+        $("#addButton").on("click", function () {
+            if ($(".x").length > 10) { // Number of boxes.
+                alert("Only 5 textboxes allow");
+
+                return false;
+            }
+            var newName = $(".x").first().clone().addClass("newAdded"); // Clone the group and add a new class.
+
+            newName.appendTo("#TextBoxesGroup"); // Append the new group.
+        });
+
+        $("#removeButton").on("click", function () {
+            if ($(".x").length == 1) { // Number of boxes.
+                alert("No more textbox to remove");
+
+                return false;
+            }
+            $(".newAdded").last().remove(); // Remove the last group.
+        });
+
+        });
+
+
+
+
+
+
+
+
+
     $('#uploadbutton').click(function(){
+
 
         document.getElementById("uploadtip").innerText == '';
 
 
         var myreg =/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验手机
 
+        var transdata = [];
+        $(".x").each(function() {
+            transdata.push($(this).val());
+        });
+      //alert(transdata[0]);
 
 
-        var tel = $("#tel").val();
+
+
+        let tel = [];
+        for (let i = 0; i < transdata.length; i++) {
+            if(myreg.test(transdata[i])){
+                tel.push(transdata[i])
+            }
+        }
+        //alert(typeof tel)
+  //alert(tel instanceof Array);
+
+     // alert(tel);
+        //console.log (tel);
+
         var content = $("#content").val();
         var time = $("#time").val();
 
@@ -141,19 +205,13 @@
 
 
         var fm ="tel=" + tel + "&content=" + content + "&time=" + time;
+       // alert(typeof fm)
 
 
 
-        if(tel == "" ||tel == null){
+     if(Array.isArray(tel) && tel.length === 0){
             $("#tel").focus;
-            $("#uploadtip").html("请输入手机号码")
-
-        }
-
-
-        else if(!myreg.test(tel)){
-            $("#tel").focus;
-            $("#uploadtip").html("请输入11位手机号")
+            $("#uploadtip").html("请输入正确格式的手机号")
         }
 
         else if(content == "" ||content == null){
