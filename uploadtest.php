@@ -1,14 +1,17 @@
 <?php
-var_dump($_POST);
-$accept_tel= explode("，",$_POST['tel']);
+//var_dump($_POST);
+
+$accept_tel = explode(',',$_POST['tel']);
 //$accept_tel = json_decode($_POST['tel'],TRUE);
 var_dump($accept_tel);
-
-if(is_array($accept_tel)){
+/*
+  if(is_array($accept_tel)){
   echo '变量 $arr_age 是一个数组';
 } else {
   echo '变量 $arr_age 不是一个数组';
 }
+  */
+
 
 $content=$_POST["content"];
 $sendtime=$_POST["time"];
@@ -44,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           if(date('Ymd') == date('Ymd', strtotime($sendtime))){
               $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime)
-   VALUES     ('$accept_tel[i]','$content','$sendtime')";
+   VALUES     ('$accept_tel[$i]','$content','$sendtime')";
               mysqli_query($conn,$sql);
               $orderid = mysqli_insert_id(($conn));
               $sql2 = "INSERT INTO  todayalert  (sendtel,content,sendtime,alertid)
-   VALUES     ('$accept_tel[i]','$content','$sendtime','$orderid')";
+   VALUES     ('$accept_tel[$i]','$content','$sendtime','$orderid')";
               mysqli_query($conn,$sql2);
-              mysqli_close($conn);
+
               /*
               echo "<script language='javascript' type='text/javascript'>";
               echo "window.location.href='./alertlist.php'";
@@ -58,10 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               */
             }
             else{
-                $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime)
-     VALUES     ('$accept_tel[i]','$content','$sendtime')";
-                mysqli_query($conn,$sql);
-                mysqli_close($conn);
+
+                $sql3 = "INSERT INTO  alertrecord  (sendtel,content,sendtime)
+     VALUES     ('$accept_tel[$i]','$content','$sendtime')";
+                mysqli_query($conn,$sql3);
+
                 /* echo "<script language='javascript' type='text/javascript'>";
                 echo "window.location.href='./alertlist.php'";
                 echo "</script>";
@@ -69,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
         };
+      mysqli_close($conn);
 
     }
 }
