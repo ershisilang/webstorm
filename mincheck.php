@@ -81,7 +81,7 @@ for($i=0;$i<count($senddata);++$i) {
 
 
     if ($phpdata['status'] == "success") {
-        $sql = "update alertrecord(recordstate,alertid) VALUES('$phpdata[status]','$phpdata[send_id]') WHERE recordid='$id'";
+        $sql = "update alertrecord(sendstate,alertid) VALUES('$phpdata[status]','$phpdata[send_id]') WHERE recordid='$id'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -100,7 +100,7 @@ for($i=0;$i<count($senddata);++$i) {
 
 
     } else {
-        $sql1 = "update alertrecord(recordstate,msg) VALUES('$phpdata[status]','$phpdata[msg]') WHERE recordid='$id'";
+        $sql1 = "update alertrecord(sendstate,msg) VALUES('$phpdata[status]','$phpdata[msg]') WHERE recordid='$id'";
         $data = mysqli_query($conn, $sql1);
         if (!$data) {
             die('2无法插入数据: ' . mysqli_error($conn));

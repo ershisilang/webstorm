@@ -47,7 +47,7 @@ mysqli_select_db($conn, 'test' );
 
 if($phpdata['status']=="success")
 {
-    $sql ="INSERT  INTO alertrecord(username,recordstate,send_id) VALUES('$username','$phpdata[status]','$phpdata[send_id]')";
+    $sql ="INSERT  INTO alertrecord(username,sendstate,send_id) VALUES('$username','$phpdata[status]','$phpdata[send_id]')";
 
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -58,7 +58,7 @@ if($phpdata['status']=="success")
 }
 else
 {
-    $sql1 ="INSERT  INTO alertrecord(username,recordstate,send_id,msg) VALUES('$username','$phpdata[status]','$phpdata[send_id]','$phpdata[msg]')";
+    $sql1 ="INSERT  INTO alertrecord(username,sendstate,send_id,msg) VALUES('$username','$phpdata[status]','$phpdata[send_id]','$phpdata[msg]')";
       $data = mysqli_query($conn, $sql1);
     if (!$data) {
         die('无法插入数据: ' . mysqli_error($conn));
