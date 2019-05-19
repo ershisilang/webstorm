@@ -1,17 +1,18 @@
 <?php
 
-$dbhost = '39.105.188.97'; // mysql服务器主机地址
+$dbhost = 'localhost:3306'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
+
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-
-
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
 
 
 
-$sql = "select sendtel,alertid,content from todayalert WHERE  DATE_FORMAT(sendtime, '%Y-%m-%d %k:%i') <= DATE_FORMAT(NOW(), '%Y-%m-%d %k:%i')";
+
+
+$sql = "select sendtel,alertid,content from todayalert WHERE  DATE_FORMAT(sendtime, '%Y-%m-%d %k:%i') > DATE_FORMAT(NOW(), '%Y-%m-%d %k:%i')";
 $result=mysqli_query($conn,$sql);
 
 
@@ -41,31 +42,35 @@ if(is_array($senddata)){
     echo '变量 $arr_site 不是一个数组';
 }
 
+function send_post($url, $post_data)
+{
+
+    $postdata = http_build_query($post_data);
+    $options = array(
+        'http' => array(
+            'method' => 'POST',
+            'header' => 'Content-type:application/x-www-form-urlencoded',
+            'content' => $postdata,
+            'timeout' => 15 * 60 // 超时时间（单位:s）
+        )
+    );
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    return $result;
+}
+
+
 for($i=0;$i<count($senddata);++$i) {
 
-   $id = $senddata[$i];
- echo $id;
-    $content = $senddata[$i][1];
-    //echo $content;
-    $sendtel = $senddata[$i][2];
+    $sendtel = $senddata[$i]['sendtel'];
     //echo $sendtel ;
-    function send_post($url, $post_data)
-    {
+   $id = $senddata[$i]['alertid'];
+ //echo $id;
+    $content = $senddata[$i]['content'];
+    //echo $content;
 
-        $postdata = http_build_query($post_data);
-        $options = array(
-            'http' => array(
-                'method' => 'POST',
-                'header' => 'Content-type:application/x-www-form-urlencoded',
-                'content' => $postdata,
-                'timeout' => 15 * 60 // 超时时间（单位:s）
-            )
-        );
-        $context = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
 
-        return $result;
-    }
 
 //使用方法
     $post_data = array(
@@ -78,10 +83,10 @@ for($i=0;$i<count($senddata);++$i) {
     send_post('https://api.mysubmail.com/voice/send.json', $post_data);
     $resdata = send_post('https://api.mysubmail.com/voice/send.json', $post_data);
     $phpdata = json_decode($resdata, true);
-
+    var_dump ($phpdata);
 
     if ($phpdata['status'] == "success") {
-        $sql = "update alertrecord(sendstate,alertid) VALUES('$phpdata[status]','$phpdata[send_id]') WHERE recordid='$id'";
+        $sql = "update alertrecord set recordstate='onsending', alertid='$phpdata[send_id]' WHERE recordid='$id'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -89,36 +94,33 @@ for($i=0;$i<count($senddata);++$i) {
             die('无法插入数据: ' . mysqli_error($conn));
         }
         echo "数据插入成功\n";
-        $sql1 = "update todayalert(sendstate,send_id) VALUES('$phpdata[status]','$phpdata[send_id]') WHERE alertid='$id'";
+
+        $sql1 = "DELETE FROM todayalert
+        WHERE alertid='$id'";
+        mysqli_select_db($conn, 'test');
 
         $retval = mysqli_query($conn, $sql1);
         if (!$retval) {
             die('无法删除数据: ' . mysqli_error($conn));
         }
         echo '数据删除成功！';
-        mysqli_close($conn);
+
+
 
 
     } else {
-        $sql1 = "update alertrecord(sendstate,msg) VALUES('$phpdata[status]','$phpdata[msg]') WHERE recordid='$id'";
-        $data = mysqli_query($conn, $sql1);
-        if (!$data) {
-            die('2无法插入数据: ' . mysqli_error($conn));
+
+        $sql2 = "update alertrecord set recordstate='fail', msg='$phpdata[msg]' WHERE recordid='$id'";
+        $result1 = mysqli_query($conn, $sql2);
+
+        if (!$result1) {
+            die('无法插入数据: ' . mysqli_error($conn));
         }
         echo "数据插入成功\n";
-
-        $sql = "DELETE FROM todayalert
-        WHERE alertid='$id'";
-        mysqli_select_db($conn, 'test');
-        $retval = mysqli_query($conn, $sql);
-        if (!$retval) {
-            die('无法删除数据: ' . mysqli_error($conn));
-        }
-        echo '数据删除成功！';
-        mysqli_close($conn);
 
 
     }
 }
+mysqli_close($conn);
 
 

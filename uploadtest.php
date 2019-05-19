@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $dbuser = 'root'; // mysql用户名
       $dbpass = '@001xiaoshidaI'; // mysql用户名密码
       $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+
       /*
            if (!$conn) {
           die('连接失败: ' );

@@ -1,6 +1,6 @@
 <?php
 $username='13880478475';
-$dbhost = 'localhost:3306'; // mysql服务器主机地址
+$dbhost = '39.105.188.97'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
@@ -115,7 +115,7 @@ $result = mysqli_query($conn,"SELECT content,sendtel,sendtime,recordstate FROM a
                 "sInfoPostFix": "",
                 "sSearch": "搜索:",
                 "sUrl": "",
-                "sEmptyTable": "表中数据为空",
+                "sEmptyTable": "您还没有发送记录",
                 "sLoadingRecords": "载入中...",
                 "sInfoThousands": ",",
                 "oPaginate": {

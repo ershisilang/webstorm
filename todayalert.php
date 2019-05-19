@@ -2,7 +2,7 @@
 
 
 //每天晚上11:40开始跑一次
-$dbhost = 'localhost:3306'; // mysql服务器主机地址
+$dbhost = '39.105.188.97'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);

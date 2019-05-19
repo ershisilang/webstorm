@@ -1,6 +1,7 @@
 <?php
-$username='13880478471';
-$dbhost = 'localhost:3306'; // mysql服务器主机地址
+/*
+$username='13880478475';
+$dbhost = '39.105.188.97'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
@@ -28,7 +29,7 @@ echo '<h2>菜鸟教程 mysqli_fetch_array 测试<h2>';
 $row = mysqli_fetch_row($result2);
 $res = $row[0];
 echo $res;
-
+*/
 ?>
 
 <!DOCTYPE html>

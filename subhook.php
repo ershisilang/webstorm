@@ -8,8 +8,8 @@ if($_POST['events'] == 'delivered') {
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
     mysqli_query($conn , "set names utf8");
     mysqli_select_db($conn, 'test' );
+    $sql = "update alertrecord set recordstate='发送成功' WHERE alertid='$send_id'";
 
-    $sql="UPDATE alertrecord SET recordstate='成功'  WHERE alertid='$send_id'";
     mysqli_query($conn,$sql);
     mysqli_close($conn);
 
