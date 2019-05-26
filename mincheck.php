@@ -1,8 +1,11 @@
 <?php
 
-$dbhost = 'localhost:3306'; // mysql服务器主机地址
+
+
+$dbhost = '39.105.188.97'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
+
 
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 mysqli_query($conn , "set names utf8");
@@ -12,7 +15,7 @@ mysqli_select_db($conn, 'test' );
 
 
 
-$sql = "select sendtel,alertid,content from todayalert WHERE  DATE_FORMAT(sendtime, '%Y-%m-%d %k:%i') > DATE_FORMAT(NOW(), '%Y-%m-%d %k:%i')";
+$sql = "select sendtel,alertid,content from todayalert WHERE  DATE_FORMAT(sendtime, '%Y-%m-%d %k:%i') = DATE_FORMAT(NOW(), '%Y-%m-%d %k:%i')";
 $result=mysqli_query($conn,$sql);
 
 
@@ -80,13 +83,13 @@ for($i=0;$i<count($senddata);++$i) {
         'signature' => 'eb6e703a46ff308ea98bf44acc7e6234'
 
     );
-    send_post('https://api.mysubmail.com/voice/send.json', $post_data);
+
     $resdata = send_post('https://api.mysubmail.com/voice/send.json', $post_data);
     $phpdata = json_decode($resdata, true);
     var_dump ($phpdata);
 
     if ($phpdata['status'] == "success") {
-        $sql = "update alertrecord set recordstate='onsending', alertid='$phpdata[send_id]' WHERE recordid='$id'";
+        $sql = "update alertrecord set recordstate='正在发送', alertid='$phpdata[send_id]' WHERE recordid='$id'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -112,7 +115,8 @@ for($i=0;$i<count($senddata);++$i) {
 
         $sql2 = "update alertrecord set recordstate='fail', msg='$phpdata[msg]' WHERE recordid='$id'";
         $result1 = mysqli_query($conn, $sql2);
-
+        $sql4 = "update user set resnum=resnum+1 WHERE username='13880478475'";
+        mysqli_query($conn,$sql4);
         if (!$result1) {
             die('无法插入数据: ' . mysqli_error($conn));
         }

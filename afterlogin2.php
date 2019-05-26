@@ -1,26 +1,35 @@
 <?php
 
-
 session_start();
 
-$_SESSION['name'] = '13880478475';
 $username=$_SESSION['name'];
-/*
+
 if (!isset($_SESSION['name'])) {
 
     header("Location:price1.html");
     exit;
+};
+$dbhost = 'localhost:3306'; // mysql服务器主机地址
+$dbuser = 'root'; // mysql用户名
+$dbpass = '@001xiaoshidaI'; // mysql用户名密码
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+mysqli_query($conn , "set names utf8");
+mysqli_select_db($conn, 'test' );
+
+$sql8="SELECT memduedate FROM user where username='13880478475'";
+$duedate=mysqli_query($conn,$sql8);
+if ($duedate<date("Y-m-d")) {
+    header("Location:my.php");
+    exit;
+};
+
+$sql9="SELECT resnum FROM user where username='13880478475'";
+$resnum=mysqli_query($conn,$sql9);
+
+if ($resnum<1) {
+    header("Location:my.php");
+    exit;
 }
-
-
-    $duecheck=$_SESSION['duecheck'];
-    $ismember=$_SESSION['ismember'];
-    $numcheck=$_SESSION['numcheck'];
-    $username=$_SESSION['name'] ;
-
-
- */
-
 
 ?>
 

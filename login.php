@@ -45,7 +45,7 @@ if ($username && $password){//如果用户名和密码都不为空
 
 
         echo "<script language='javascript' type='text/javascript'>";
-        echo "window.location.href='./afterlogin2.php'";
+        echo "window.location.href='./uploadtext.php'";
         echo "</script>";
 
     }else{

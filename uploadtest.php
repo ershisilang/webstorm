@@ -1,9 +1,17 @@
 <?php
 //var_dump($_POST);
+session_start();
 
+$username=$_SESSION['name'];
+
+if (!isset($_SESSION['name'])) {
+
+    header("Location:price1.html");
+    exit;
+};
 $accept_tel = explode(',',$_POST['tel']);
 //$accept_tel = json_decode($_POST['tel'],TRUE);
-var_dump($accept_tel);
+//var_dump($accept_tel);
 /*
   if(is_array($accept_tel)){
   echo '变量 $arr_age 是一个数组';
@@ -42,14 +50,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       mysqli_select_db($conn, 'test');
       mysqli_query($conn, "set names utf8");
 
+      $sql9="SELECT resnum FROM user where username='$username'";
+      $row=mysqli_query($conn,$sql9);
+      $resnum = mysqli_fetch_array($row);
 
+      if ($resnum["resnum"]<sizeof($accept_tel)) {
+          echo "发送条数超过会员期内剩余次数，请充值";
+
+      }
 
       for ($i=0;$i<sizeof($accept_tel);$i++) {
 
           if(date('Ymd') == date('Ymd', strtotime($sendtime))){
-              $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime)
-   VALUES     ('$accept_tel[$i]','$content','$sendtime')";
+              $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime,recordstate)
+   VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送')";
               mysqli_query($conn,$sql);
+              $sql4 = "update user set resnum=resnum-1 WHERE username='13880478475'";
+              mysqli_query($conn,$sql4);
               $orderid = mysqli_insert_id(($conn));
               $sql2 = "INSERT INTO  todayalert  (sendtel,content,sendtime,alertid)
    VALUES     ('$accept_tel[$i]','$content','$sendtime','$orderid')";
@@ -63,9 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             else{
 
-                $sql3 = "INSERT INTO  alertrecord  (sendtel,content,sendtime)
-     VALUES     ('$accept_tel[$i]','$content','$sendtime')";
+                $sql3 = "INSERT INTO  alertrecord  (sendtel,content,sendtime，recordstate)
+     VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送')";
                 mysqli_query($conn,$sql3);
+                $sql4 = "update user set resnum=resnum-1 WHERE username='13880478475'";
+                mysqli_query($conn,$sql4);
 
                 /* echo "<script language='javascript' type='text/javascript'>";
                 echo "window.location.href='./alertlist.php'";

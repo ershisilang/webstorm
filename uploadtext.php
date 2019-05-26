@@ -1,3 +1,39 @@
+<?php
+session_start();
+
+$username=$_SESSION['name'];
+
+if (!isset($_SESSION['name'])) {
+
+    header("Location:price1.html");
+    exit;
+};
+$dbhost = 'localhost:3306'; // mysql服务器主机地址
+$dbuser = 'root'; // mysql用户名
+$dbpass = '@001xiaoshidaI'; // mysql用户名密码
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+mysqli_query($conn , "set names utf8");
+mysqli_select_db($conn, 'test' );
+$sql8="SELECT memduedate FROM user where username='$username'";
+$row1=mysqli_query($conn,$sql8);
+$duedate = mysqli_fetch_array($row1);
+
+if ($duedate["memduedate"]<date("Y-m-d")) {
+    header("Location:my.php");
+    exit;
+};
+
+$sql9="SELECT resnum FROM user where username='$username'";
+$row=mysqli_query($conn,$sql9);
+$resnum = mysqli_fetch_array($row);
+
+if ($resnum["resnum"]<1) {
+    header("Location:my.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -209,6 +245,8 @@
 
 
 
+
+
      if(Array.isArray(tel) && tel.length === 0){
             $("#tel").focus;
             $("#uploadtip").html("请输入正确格式的手机号")
@@ -235,9 +273,8 @@
             $("#uploadtip").html("请选择发送时间")
         }
 
-
-        else{
-            $.ajax(
+     else{
+         $.ajax(
                 {
                     method: "post",
                     url: 'uploadtest.php',
@@ -251,7 +288,7 @@
                     }
                 }
             );
-        }
+     }
     });
 
 

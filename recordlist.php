@@ -1,15 +1,16 @@
 <?php
 $username='13880478475';
-$dbhost = '39.105.188.97'; // mysql服务器主机地址
+
+$dbhost = 'localhost:3306'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
+
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-
-
 
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
 $result = mysqli_query($conn,"SELECT content,sendtel,sendtime,recordstate FROM alertrecord where username='$username'");
+
 ?>
 
 
@@ -74,8 +75,8 @@ $result = mysqli_query($conn,"SELECT content,sendtel,sendtime,recordstate FROM a
                 <tr>
                     <th>接收电话</th>
                     <th>发送时间</th>
-                    <th>发送状态</th>
                     <th>发送内容</th>
+                    <th>发送状态</th>
                 </tr>
                 </thead>
                 <?php
@@ -84,10 +85,10 @@ $result = mysqli_query($conn,"SELECT content,sendtel,sendtime,recordstate FROM a
                 {
                     echo '
             <tr>            
-            <th>'.$row["sendtel"].'</th>
-            <th>'.$row["sendtime"].'</th>
-            <th>'.$row["recordstate"].'</th> 
-            <th>'.$row["content"].'</th>           
+            <th>'.$row["sendtel"].'</th>            
+            <th>'.date("Y-m-d H:i",strtotime( $row["sendtime"] )).'</th>           
+            <th>'.$row["content"].'</th>   
+            <th>'.$row["recordstate"].'</th>         
         </tr>      
              ';
                 }

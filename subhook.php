@@ -23,8 +23,10 @@ else {
     mysqli_query($conn , "set names utf8");
     mysqli_select_db($conn, 'test' );
 
-    $sql="UPDATE alertrecord SET recordstate='失败'  WHERE alertid='$send_id'";
+    $sql="UPDATE alertrecord SET recordstate='未接通'  WHERE alertid='$send_id'";
     mysqli_query($conn,$sql);
+    $sql4 = "update user set resnum=resnum+1 WHERE username='13880478475'";
+    mysqli_query($conn,$sql4);
 
 
     mysqli_close($conn);
