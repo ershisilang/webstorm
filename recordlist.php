@@ -1,14 +1,37 @@
 <?php
-$username='13880478475';
+session_start();
 
+$username=$_SESSION['name'];
+
+if (!isset($_SESSION['name'])) {
+
+    header("Location:index.html");
+    exit;
+};
 $dbhost = 'localhost:3306'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
-
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
+/*
+ 会员表是否有一条记录，主要针对alertlist
+$sql7="SELECT memduedate FROM user where username='$username'";
+$row1=mysqli_query($conn,$sql8);
+$duedate = mysqli_fetch_array($row1);
+  */
+
+
+//如果没有付过费
+$sqlf = "SELECT * FROM member WHERE username=$username";
+$result1 = mysqli_query($conn, $sqlf);
+$rows1 = mysqli_num_rows($result1);
+if (!$rows1) {
+    echo "<script language='javascript' type='text/javascript'>";
+    echo "window.location.href='./afterlogin2.php'";
+    echo "</script>";
+
+}
 $result = mysqli_query($conn,"SELECT content,sendtel,sendtime,recordstate FROM alertrecord where username='$username'");
 
 ?>
@@ -57,7 +80,7 @@ $result = mysqli_query($conn,"SELECT content,sendtel,sendtime,recordstate FROM a
                     控制台
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="my" href="#">退出账号</a>
+                    <a class="dropdown-item" id="my"   href="session.php">退出</a>
                 </div>
             </li>
         </ul>

@@ -6,7 +6,7 @@ $username=$_SESSION['name'];
 
 if (!isset($_SESSION['name'])) {
 
-    header("Location:price1.html");
+    header("Location:index.html");
     exit;
 };
 $accept_tel = explode(',',$_POST['tel']);
@@ -33,6 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   else if (empty($_POST["time"])) {
       echo "请选择发送电话时间";
   }
+  else if (date('YmdH:i', strtotime($_POST["time"]))< date('YmdH:i')) {
+      echo "请选择当前时间之后的时间";
+  }
   else {
 //插入数据库;插入提醒表;修改数据库密码
       $dbhost = 'localhost:3306'; // mysql服务器主机地址
@@ -50,13 +53,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       mysqli_select_db($conn, 'test');
       mysqli_query($conn, "set names utf8");
 
-      $sql9="SELECT resnum FROM user where username='$username'";
+      $sql9="SELECT resnum FROM member WHERE   DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN DATE_FORMAT(startdate, '%Y-%m-%d')  AND DATE_FORMAT(duedate, '%Y-%m-%d') AND username=$username";
       $row=mysqli_query($conn,$sql9);
       $resnum = mysqli_fetch_array($row);
 
       if ($resnum["resnum"]<sizeof($accept_tel)) {
           echo "发送条数超过会员期内剩余次数，请充值";
-
+          exit;
       }
 
       for ($i=0;$i<sizeof($accept_tel);$i++) {
@@ -65,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime,recordstate)
    VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送')";
               mysqli_query($conn,$sql);
-              $sql4 = "update user set resnum=resnum-1 WHERE username='13880478475'";
+              $sql4 = "update member set resnum=resnum-1 WHERE username=$username";
               mysqli_query($conn,$sql4);
               $orderid = mysqli_insert_id(($conn));
               $sql2 = "INSERT INTO  todayalert  (sendtel,content,sendtime,alertid)
@@ -79,11 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               */
             }
             else{
-
-                $sql3 = "INSERT INTO  alertrecord  (sendtel,content,sendtime，recordstate)
-     VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送')";
+                $sql3 = "INSERT INTO  alertrecord  (sendtel,content,sendtime,recordstate)
+   VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送')";
                 mysqli_query($conn,$sql3);
-                $sql4 = "update user set resnum=resnum-1 WHERE username='13880478475'";
+
+                $sql4 = "update member set resnum=resnum-1 WHERE username=$username";
                 mysqli_query($conn,$sql4);
 
                 /* echo "<script language='javascript' type='text/javascript'>";
@@ -94,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         };
       mysqli_close($conn);
+      echo "已添加成功";
 
     }
 }

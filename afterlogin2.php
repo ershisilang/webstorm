@@ -1,36 +1,14 @@
 <?php
 
-session_start();
+  session_start();
 
 $username=$_SESSION['name'];
 
 if (!isset($_SESSION['name'])) {
 
-    header("Location:price1.html");
+    header("Location:index.html");
     exit;
 };
-$dbhost = 'localhost:3306'; // mysql服务器主机地址
-$dbuser = 'root'; // mysql用户名
-$dbpass = '@001xiaoshidaI'; // mysql用户名密码
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-mysqli_query($conn , "set names utf8");
-mysqli_select_db($conn, 'test' );
-
-$sql8="SELECT memduedate FROM user where username='13880478475'";
-$duedate=mysqli_query($conn,$sql8);
-if ($duedate<date("Y-m-d")) {
-    header("Location:my.php");
-    exit;
-};
-
-$sql9="SELECT resnum FROM user where username='13880478475'";
-$resnum=mysqli_query($conn,$sql9);
-
-if ($resnum<1) {
-    header("Location:my.php");
-    exit;
-}
-
 ?>
 
 
@@ -124,7 +102,7 @@ if ($resnum<1) {
                     我的
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="my"  onclick="logout()" href="session.php">退出</a>
+                    <a class="dropdown-item" id="my"   href="session.php">退出</a>
 
                 </div>
             </li>
@@ -217,14 +195,7 @@ if ($resnum<1) {
 
 <script>
 
-    function logout() {
-        $_SESSION = array(); //清除SESSION值.
-        if (isset($_COOKIE[session_name()])) {  //判断客户端的cookie文件是否存在,存在的话将其设置为过期.
-            setcookie(session_name(), '', time() - 1, '/');
-        }
-        session_destroy();
 
-    }
 
         $('#paymonth').click(function(){
 

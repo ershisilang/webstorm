@@ -115,7 +115,10 @@ for($i=0;$i<count($senddata);++$i) {
 
         $sql2 = "update alertrecord set recordstate='fail', msg='$phpdata[msg]' WHERE recordid='$id'";
         $result1 = mysqli_query($conn, $sql2);
-        $sql4 = "update user set resnum=resnum+1 WHERE username='13880478475'";
+        $sql5="select username from alertrecord where recordid='$id'";
+        $result =mysqli_query($conn,$sql5);
+        $row = mysqli_fetch_assoc($result);
+        $sql4 = "update member set resnum=resnum+1 WHERE   DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN DATE_FORMAT(startdate, '%Y-%m-%d')  AND DATE_FORMAT(duedate, '%Y-%m-%d') AND username='$row[username]'";
         mysqli_query($conn,$sql4);
         if (!$result1) {
             die('无法插入数据: ' . mysqli_error($conn));

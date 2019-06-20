@@ -1,35 +1,55 @@
 <?php
-/*
-$username='13880478475';
-$dbhost = '39.105.188.97'; // mysql服务器主机地址
+
+session_start();
+
+$username=$_SESSION['name'];
+
+if (!isset($_SESSION['name'])) {
+
+    header("Location:index.html");
+    exit;
+};
+$dbhost = 'localhost:3306'; // mysql服务器主机地址
 $dbuser = 'root'; // mysql用户名
 $dbpass = '@001xiaoshidaI'; // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
 
-$sql="select memstartdate from user where username='$username'";
-$result=mysqli_query($conn,$sql);
-$startdate = mysqli_fetch_assoc($result);
+//如果没有付过费
+$sqlf = "SELECT * FROM member WHERE username=$username";
+$result1 = mysqli_query($conn, $sqlf);
+$rows1 = mysqli_num_rows($result1);
+if (!$rows1) {
+    echo "<script language='javascript' type='text/javascript'>";
+    echo "window.location.href='./afterlogin2.php'";
+    echo "</script>";
 
-$sql1="select memduedate from user where username='$username'";
-$result1=mysqli_query($conn,$sql1);
-$duedate = mysqli_fetch_assoc($result1);
-echo $startdate["memstartdate"];
-echo $duedate["memduedate"];
-
-$sql2="SELECT COUNT(*) FROM alertrecord WHERE  DATE(sendtime) BETWEEN STR_TO_DATE('{$startdate['memstartdate']}', '%Y-%m-%d')  AND STR_TO_DATE('{$duedate['memduedate']}', '%Y-%m-%d')";
-//$sql2='SELECT sendtime FROM alertrecord WHERE  DATE_FORMAT(sendtime,"%d/%m/%Y") AS formatted_date BETWEEN "$startdate"["memstartdate"] AND "$duedate"["memduedate"] ';
-$result2=mysqli_query($conn,$sql2);
-if(!$result2 )
-{
-    die('无法读取数据ff : ' );
 }
-echo '<h2>菜鸟教程 mysqli_fetch_array 测试<h2>';
-$row = mysqli_fetch_row($result2);
-$res = $row[0];
-echo $res;
-*/
+
+//如果付过费，查看会员是否过期
+
+$sql5 = "SELECT startdate,duedate,resnum FROM member WHERE   DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN DATE_FORMAT(startdate, '%Y-%m-%d')  AND DATE_FORMAT(duedate, '%Y-%m-%d') AND username=$username";
+$result2 = mysqli_query($conn, $sql5);
+$rows2 = mysqli_num_rows($result2);
+$result3 = mysqli_fetch_assoc($result2);
+
+
+if ($rows2>0) {
+    $is_member="正常";
+    $startdate = $result3['startdate'];
+    $duedate = $result3['duedate'];
+    $resnum = $result3['resnum'];
+}
+
+else {
+    $is_member="已过期,请立即充值";
+    $startdate = "已过期,请立即充值";
+    $duedate = "已过期,请立即充值";
+    $resnum = "已过期,请立即充值";
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -84,6 +104,7 @@ echo $res;
         }
 
 
+
     </style>
 
 </head>
@@ -115,7 +136,7 @@ echo $res;
                     控制台
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="my" href="#">退出账号</a>
+                    <a class="dropdown-item" id="my"   href="session.php">退出</a>
                 </div>
             </li>
         </ul>
@@ -125,25 +146,106 @@ echo $res;
 
 
 
-
-<div class="container">
-
-    <div class="down">
-        <p id="startdate">1</p>
-        <p id="duedate">2</p>
-        <p id="resnum">3</p>
-    </div>
-
+<div class="mem">
+    <span style="color:blue">会员状态:</span>
+    <span style="color:blue"  id="curstate">2</span>
 </div>
 
-<script>
 
-    var startdate = "<?php echo $startdate['memstartdate']; ?>";
-    var duedate = "<?php echo $duedate['memduedate']; ?>";
-    var resnum = "<?php echo $res['resnum']; ?>";
-    document.getElementById('startdate').innerHTML = "您的会员开始时间为"+startdate ;
-    document.getElementById('duedate').innerHTML = "您的会员结束时间为"+duedate ;
-    document.getElementById('resnum').innerHTML = "您的剩余次数为"+resnum+"次";
+<div class="start">
+    <span style="color:blue">开始时间:</span>
+    <span style="color:blue"  id="startdate">1</span>
+    </div>
+
+<div class="due">
+    <span style="color:blue">结束时间:</span>
+    <span style="color:blue"  id="duedate">2</span>
+</div>
+
+<div class="res">
+    <span style="color:blue">剩余次数:</span>
+    <span style="color:blue"  id="resnum">3</span>
+</div>
+
+<div class="charge">
+    <span style="color:blue"  id="charge"">选择套餐:</span>
+    <select id="select" >
+        <option>15元/月</option>
+        <option>160元/年（9折）</option>
+    </select>
+    <button type="button" id="pay" >充值</button>
+</div>
+
+
+
+<script>
+    var curstate = <?php echo json_encode($is_member) ?>;
+        document.getElementById("curstate").innerHTML = curstate;
+
+
+
+    var startdate = <?php echo json_encode($startdate) ?>;
+    document.getElementById("startdate").innerHTML = startdate;
+
+    var duedate = <?php echo json_encode($duedate) ?>;
+    document.getElementById("duedate").innerHTML = duedate;
+
+    var resnum = <?php echo json_encode($resnum) ?>;
+    document.getElementById("resnum").innerHTML = resnum;
+
+
+
+
+
+
+    $('#pay').click(function(){
+
+        var name;
+        name="<?php echo $username;?>";
+        var WIDout_trade_no1="";  //订单号
+        for(var i=0;i<6;i++) //6位随机数，用以加在时间戳后面。
+        {
+            WIDout_trade_no1 += Math.floor(Math.random()*10);
+        }
+        WIDout_trade_no1 = new Date().getTime() + WIDout_trade_no1;  //时间
+
+        var resdata = "WIDout_trade_no1=" + WIDout_trade_no1 + "&name=" + name;
+
+        $.ajax({
+                method: "post",
+                url: "insertorder.php",
+                data:resdata,
+            }
+        );
+
+
+        var form = $("<form method='post'></form>");
+        form.attr({"action":"alipay.trade.page.pay-PHP-UTF-8/pagepay/pagepay.php"});
+
+
+
+        var input1 = $("<input type='hidden'>").attr("name", "WIDout_trade_no").val(WIDout_trade_no1);
+        var input2 = $("<input type='hidden'>").attr("name", "WIDsubject").val("爱通知包月套餐15.00元" );
+        var input3 = $("<input type='hidden'>").attr("name", "WIDbody").val("包月" );
+        if($("#select option:selected").text()=='15元/月')
+        {
+            var input4 = $("<input type='hidden'>").attr("name", "WIDtotal_amount").val("0.15");
+        }
+        else{
+            var input4 = $("<input type='hidden'>").attr("name", "WIDtotal_amount").val("0.16");;
+        }
+        form.append(input1);
+        form.append(input2);
+        form.append(input3);
+        form.append(input4);
+// 这步很重要，如果没有这步，则会报错无法建立连接
+        $("body").append($(form));
+        form.submit();
+
+
+
+    }  );
+
 </script>
 
 </body>

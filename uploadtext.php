@@ -5,7 +5,7 @@ $username=$_SESSION['name'];
 
 if (!isset($_SESSION['name'])) {
 
-    header("Location:price1.html");
+    header("Location:index.html");
     exit;
 };
 $dbhost = 'localhost:3306'; // mysql服务器主机地址
@@ -14,23 +14,48 @@ $dbpass = '@001xiaoshidaI'; // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 mysqli_query($conn , "set names utf8");
 mysqli_select_db($conn, 'test' );
-$sql8="SELECT memduedate FROM user where username='$username'";
+/*
+ 会员表是否有一条记录，主要针对alertlist
+$sql7="SELECT memduedate FROM user where username='$username'";
 $row1=mysqli_query($conn,$sql8);
 $duedate = mysqli_fetch_array($row1);
+  */
 
-if ($duedate["memduedate"]<date("Y-m-d")) {
-    header("Location:my.php");
-    exit;
-};
 
-$sql9="SELECT resnum FROM user where username='$username'";
-$row=mysqli_query($conn,$sql9);
-$resnum = mysqli_fetch_array($row);
+//如果没有付过费
+$sqlf = "SELECT * FROM member WHERE username=$username";
+$result1 = mysqli_query($conn, $sqlf);
+$rows1 = mysqli_num_rows($result1);
+if (!$rows1) {
+    echo "<script language='javascript' type='text/javascript'>";
+    echo "window.location.href='./afterlogin2.php'";
+    echo "</script>";
 
-if ($resnum["resnum"]<1) {
-    header("Location:my.php");
-    exit;
 }
+
+//如果付过费，查看会员是否过期
+
+$sql5 = "SELECT startdate,duedate,resnum FROM member WHERE   DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN DATE_FORMAT(startdate, '%Y-%m-%d')  AND DATE_FORMAT(duedate, '%Y-%m-%d') AND username=$username";
+$result2 = mysqli_query($conn, $sql5);
+$rows2 = mysqli_num_rows($result2);
+$result3 = mysqli_fetch_assoc($result2);
+
+
+if ($rows2>0) {
+    $resnum = $result3['resnum'];
+    if ($resnum==0) {
+        header("Location:my.php");
+        exit;
+    }
+}
+
+else {
+    header("Location:my.php");
+    exit;
+
+}
+
+
 ?>
 
 
@@ -110,7 +135,7 @@ if ($resnum["resnum"]<1) {
                     控制台
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="my" href="#">退出账号</a>
+                    <a class="dropdown-item" id="my"   href="session.php">退出</a>
                 </div>
             </li>
         </ul>
@@ -156,7 +181,7 @@ if ($resnum["resnum"]<1) {
         <input type="text" id="time" name="time" placeholder="请选择日期">
     </div>
 
-    <div style="color:#F00" id="uploadtip">发的发的发</div>
+    <div style="color:#F00" id="uploadtip"></div>
 
 
 
@@ -203,9 +228,6 @@ if ($resnum["resnum"]<1) {
 
 
     $('#uploadbutton').click(function(){
-
-
-        document.getElementById("uploadtip").innerText == '';
 
 
         var myreg =/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;//校验手机

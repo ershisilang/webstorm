@@ -1,4 +1,6 @@
 <?php
+
+$t1 = microtime(true);
     $send_id = $_POST['send_id'];
 
 if($_POST['events'] == 'delivered') {
@@ -25,15 +27,22 @@ else {
 
     $sql="UPDATE alertrecord SET recordstate='未接通'  WHERE alertid='$send_id'";
     mysqli_query($conn,$sql);
-    $sql4 = "update user set resnum=resnum+1 WHERE username='13880478475'";
+
+    $sql1="select username from alertrecord where alertid='$send_id'";
+    $result =mysqli_query($conn,$sql1);
+    $row = mysqli_fetch_assoc($result);
+    $sql4 = "update member set resnum=resnum+1 WHERE   DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN DATE_FORMAT(startdate, '%Y-%m-%d')  AND DATE_FORMAT(duedate, '%Y-%m-%d') AND username='$row[username]'";
     mysqli_query($conn,$sql4);
 
 
-    mysqli_close($conn);
-
 }
 
+$t2 = microtime(true);
+$time=$t2- $t1;
+$sqll=" INSERT INTO exctime(exctime1,excname) VALUES('$time','stockprice')";
+mysqli_query($conn, $sqll);
 
+mysqli_close($conn);
 
 
 
