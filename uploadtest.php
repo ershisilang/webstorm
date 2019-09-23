@@ -65,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       for ($i=0;$i<sizeof($accept_tel);$i++) {
 
           if(date('Ymd') == date('Ymd', strtotime($sendtime))){
-              $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime,recordstate)
-   VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送')";
+              $sql = "INSERT INTO  alertrecord  (sendtel,content,sendtime,recordstate,alerttype)
+   VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送','事件')";
               mysqli_query($conn,$sql);
               $sql4 = "update member set resnum=resnum-1 WHERE username=$username";
               mysqli_query($conn,$sql4);
@@ -82,8 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               */
             }
             else{
-                $sql3 = "INSERT INTO  alertrecord  (sendtel,content,sendtime,recordstate)
-   VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送')";
+                $sql3 = "INSERT INTO  alertrecord  (sendtel,content,sendtime,recordstate,alerttype)
+   VALUES     ('$accept_tel[$i]','$content','$sendtime','待发送','事件')";
                 mysqli_query($conn,$sql3);
 
                 $sql4 = "update member set resnum=resnum-1 WHERE username=$username";

@@ -112,6 +112,7 @@ $result = mysqli_query($conn,"SELECT content,sendtel,sendtime,recordstate FROM a
             <th>'.date("Y-m-d H:i",strtotime( $row["sendtime"] )).'</th>           
             <th>'.$row["content"].'</th>   
             <th>'.$row["recordstate"].'</th>         
+             <th>'.$row["alerttype"].'</th>    
         </tr>      
              ';
                 }

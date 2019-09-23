@@ -2,6 +2,11 @@
 
 $t1 = microtime(true);
     $send_id = $_POST['send_id'];
+$s_time = $_POST['timestamp'];
+$send_time=date('Y-m-d H:i:s', $s_time);
+
+
+
 
 if($_POST['events'] == 'delivered') {
     $dbhost = '39.105.188.97'; // mysql服务器主机地址
@@ -10,7 +15,7 @@ if($_POST['events'] == 'delivered') {
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
     mysqli_query($conn , "set names utf8");
     mysqli_select_db($conn, 'test' );
-    $sql = "update alertrecord set recordstate='发送成功' WHERE alertid='$send_id'";
+    $sql = "update alertrecord set recordstate='发送成功',sendtime='$send_time' WHERE alertid='$send_id'";
 
     mysqli_query($conn,$sql);
     mysqli_close($conn);
@@ -25,7 +30,7 @@ else {
     mysqli_query($conn , "set names utf8");
     mysqli_select_db($conn, 'test' );
 
-    $sql="UPDATE alertrecord SET recordstate='未接通'  WHERE alertid='$send_id'";
+    $sql="UPDATE alertrecord SET recordstate='未接通' ，sendtime='$send_time' WHERE alertid='$send_id'";
     mysqli_query($conn,$sql);
 
     $sql1="select username from alertrecord where alertid='$send_id'";

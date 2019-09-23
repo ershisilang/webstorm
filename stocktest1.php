@@ -139,7 +139,7 @@ for($x=0;$x<count($m_arr);++$x){
 
 
         if ($phpdata['status'] == "success") {
-            $sql5 = "INSERT  INTO alertrecord(alertid,alerttype,username,sendtel,content,recordstate) VALUES('$phpdata[send_id]','1','$username','$tel','$content','正在发送')";
+            $sql5 = "INSERT  INTO alertrecord(alertid,alerttype,username,sendtel,content,recordstate) VALUES('$phpdata[send_id]','股票','$username','$tel','$content','正在发送')";
             $result5 = mysqli_query($conn, $sql5);
 
             if (!$result5) {
@@ -149,14 +149,29 @@ for($x=0;$x<count($m_arr);++$x){
             //减去发送的次数
             $sql3 = "update member set resnum=resnum-1  WHERE   DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN DATE_FORMAT(startdate, '%Y-%m-%d')  AND DATE_FORMAT(duedate, '%Y-%m-%d') AND username='username'";
             mysqli_query($conn,$sql3);
+        }
+        else {
 
+            $sql3 = "INSERT  INTO alertrecord(alertid,alerttype,username,sendtel,content,recordstate,msg) VALUES('$phpdata[send_id]','股票''$username','$tel','$content','发送失败','$phpdata[msg]')";
+            $result4 = mysqli_query($conn, $sql3);
 
+            if (!$result4) {
+                die('无法插入数据: ' . mysqli_error($conn));
+            }
+            echo "数据插入成功\n";
 
 
         }
 
 
   }
+
+
+    else if($m_arr[$x]['decide']=2&&$stockInfo[$i]['1']<=$m_arr[$x]['price']){
+        //发送其实是上面一模一样
+
+
+    }
    } }
 
 
